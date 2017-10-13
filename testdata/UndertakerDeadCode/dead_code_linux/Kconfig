@@ -1,0 +1,18 @@
+config MODULES
+    bool "Enable loadable module support"
+    default y
+    option modules
+
+config MAIN
+	tristate "Main module"
+
+config A
+	bool "Boolea 1"
+	depends on MAIN=n
+
+config B
+	bool "Boolean 2"
+
+config C
+    bool "Boolean 3"
+    depends on B
