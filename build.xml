@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- author: Sascha El-Sharkawy, Adam -->
+<project name="ScenarioTests" default="jenkins" basedir=".">
+	<description>Builds, tests, and runs the project ScenarioTests.</description>
+
+	<!-- Override src.dir, since we don't have a src/ folder -->
+	<property name="src.dir" value="${basedir}/test" />
+		
+	<!-- Load Marcros on Jenkins -->
+	<include file="../../KernelHaven_Infrastructure/workspace/KernelHavenMacros.xml" as="KH_Common" optional="true" />
+	<!-- Load Marcros in Eclipse -->
+	<include file="../KernelHaven/KernelHavenMacros.xml" as="KH_Common" optional="true" />
+
+	<target name="jenkins">
+		<antcall target="init" />
+		<!--antcall target="KH_Common.compile" /-->
+		<antcall target="KH_Common.test" />
+		<!--antcall target="KH_Common.jar" /-->
+		<!--antcall target="KH_Common.jarwithsources" /-->
+		<!--antcall target="KH_Common.check" /-->
+		<!--antcall target="KH_Common.jacoco_report" /-->
+		<!--antcall target="KH_Common.zip_workspace" /-->
+	</target>
+
+	<target name="init">
+		<antcall target="KH_Common.prepare.folders" />
+		<get src="${infrastructure.location}" dest="${dependencies.dir}/kernelhaven.jar" />
+		<get src="${KconfigReaderExtractor.location_src}" dest="${dependencies.dir}/kconfigreaderextractor.jar" />
+		<get src="${KbuildMinerExtractor.location_src}" dest="${dependencies.dir}/kbuildminerextractor.jar" />
+		<get src="${Undertaker.location}" dest="${dependencies.dir}/undertakerextractor.jar" />
+		<get src="${UnDeadAnalyzer.location_src}" dest="${dependencies.dir}/undeadanalyzer.jar" />
+		<get src="${CnfUtils.location}" dest="${dependencies.dir}/cnfutils.jar" />
+	</target>
+</project>
