@@ -6,16 +6,23 @@
 
 	<!-- Override src.dir, since we don't have a src/ folder -->
 	<property name="src.dir" value="${basedir}/test" />
-		
+
 	<!-- Load Marcros on Jenkins -->
 	<include file="../../KernelHaven_Infrastructure/workspace/KernelHavenMacros.xml" as="KH_Common" optional="true" />
 	<!-- Load Marcros in Eclipse -->
 	<include file="../KernelHaven/KernelHavenMacros.xml" as="KH_Common" optional="true" />
 
 	<target name="jenkins">
+		<condition property="windows_os">
+			<os family="windows" />
+		</condition>
+
+		<condition property="linux_os">
+			<os family="unix" />
+		</condition>
 		<antcall target="init" />
 		<!--antcall target="KH_Common.compile" /-->
-		<antcall target="KH_Common.test" />
+		<antcall target="test" />
 		<!--antcall target="KH_Common.jar" /-->
 		<!--antcall target="KH_Common.jarwithsources" /-->
 		<!--antcall target="KH_Common.check" /-->
@@ -23,6 +30,10 @@
 		<!--antcall target="KH_Common.zip_workspace" /-->
 	</target>
 
+	<target name="test" if="linux_os">
+		<antcall target="KH_Common.test" />
+	</target>
+	
 	<target name="init">
 		<antcall target="KH_Common.prepare.folders" />
 		<get src="${infrastructure.location}" dest="${dependencies.dir}/kernelhaven.jar" />
