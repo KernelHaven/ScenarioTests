@@ -28,6 +28,8 @@ public class RunOnlyOnLinux extends BlockJUnit4ClassRunner {
         String os = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
         if (os.indexOf("nux") >= 0) {
             super.run(notifier);            
+        } else {
+            System.err.println(this.getTestClass().getName() + " skipped because of wrong OS used.");
         }
     }
 }
