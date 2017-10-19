@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.junit.runner.RunWith;
+
 import net.ssehub.kernel_haven.util.io.csv.CsvReader;
 
 /**
@@ -16,6 +18,7 @@ import net.ssehub.kernel_haven.util.io.csv.CsvReader;
  *
  * @author Adam
  */
+@RunWith(value = RunOnlyOnLinux.class)
 public class UndertakerDeadCode extends AbstractScenarioTest {
 
     @Override
