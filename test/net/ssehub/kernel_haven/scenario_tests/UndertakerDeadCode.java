@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import org.junit.runner.RunWith;
 
+import net.ssehub.kernel_haven.AbstractScenarioTest;
 import net.ssehub.kernel_haven.util.io.csv.CsvReader;
 
 /**
