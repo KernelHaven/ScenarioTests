@@ -1,5 +1,7 @@
 package net.ssehub.kernel_haven.scenario_tests;
 
+import static org.junit.Assume.assumeTrue;
+
 import java.util.Locale;
 
 import org.junit.runner.notification.RunNotifier;
@@ -26,10 +28,8 @@ public class RunOnlyOnLinux extends BlockJUnit4ClassRunner {
     @Override
     public void run(RunNotifier notifier) {
         String os = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
-        if (os.indexOf("nux") >= 0) {
-            super.run(notifier);            
-        } else {
-            System.err.println(this.getTestClass().getName() + " skipped because of wrong OS used.");
-        }
+        assumeTrue(this.getTestClass().getName() + " skipped because of wrong OS used.", os.indexOf("nux") >= 0);
+        
+        super.run(notifier);            
     }
 }
