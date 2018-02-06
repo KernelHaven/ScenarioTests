@@ -8,5 +8,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/UndertakerExtractor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/KbuildMinerExtractor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/KconfigReaderExtractor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MetricHaven"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/srcMLExtractor"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

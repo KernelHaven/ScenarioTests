@@ -31,5 +31,7 @@
 		<get src="${Undertaker.location}" dest="${dependencies.dir}/undertakerextractor.jar" />
 		<get src="${UnDeadAnalyzer.location_src}" dest="${dependencies.dir}/undeadanalyzer.jar" />
 		<get src="${CnfUtils.location}" dest="${dependencies.dir}/cnfutils.jar" />
+		<get src="${MetricHaven.location_src}" dest="${dependencies.dir}/cnfutils.jar" />
+		<get src="${srcML.location_src}" dest="${dependencies.dir}/cnfutils.jar" />
 	</target>
 </project>
