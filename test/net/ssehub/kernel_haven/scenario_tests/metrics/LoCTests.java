@@ -31,7 +31,7 @@ public class LoCTests extends AbstractCodeMetricTests {
     public void testEmptyStatement() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/LoC_EmptyFunction.c");
         Map<String, MetricResult> result = runMetricAsMap(testfile, null);
-        Assert.assertEquals(0, 1.0, result.get("func").getValue());
+        Assert.assertEquals(1.0, result.get("func").getValue(), 0);
     }
     
     /**
@@ -41,17 +41,57 @@ public class LoCTests extends AbstractCodeMetricTests {
     public void testIfElseStatements() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/NoVariabilityFunctions.c");
         Map<String, MetricResult> result = runMetricAsMap(testfile, null);
-        Assert.assertEquals(0, 4.0, result.get("funcIfElse").getValue());
+        Assert.assertEquals(4.0, result.get("funcIfElse").getValue(), 0);
     }
     
     /**
-     * Tests a function with a parameter, an if and a goto-label statement.
+     * Tests a function with a parameter, an if, and a goto-label statement.
      */
     @Test
     public void testGotoLoopStatements() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/NoVariabilityFunctions.c");
         Map<String, MetricResult> result = runMetricAsMap(testfile, null);
-        Assert.assertEquals(0, 6.0, result.get("funcGoto").getValue());
+        Assert.assertEquals(6.0, result.get("funcGoto").getValue(), 0);
+    }
+    
+    /**
+     * Tests a function with a parameter and a do-while loop.
+     */
+    @Test
+    public void testDoWhileLoop() {
+        File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/NoVariabilityFunctions.c");
+        Map<String, MetricResult> result = runMetricAsMap(testfile, null);
+        Assert.assertEquals(9.0, result.get("functDoWhile").getValue(), 0);
+    }
+    
+    /**
+     * Tests a function with a parameter and a while loop.
+     */
+    @Test
+    public void testWhileLoop() {
+        File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/NoVariabilityFunctions.c");
+        Map<String, MetricResult> result = runMetricAsMap(testfile, null);
+        Assert.assertEquals(9.0, result.get("funcWhile").getValue(), 0);
+    }
+    
+    /**
+     * Tests a function with a parameter and a for loop.
+     */
+    @Test
+    public void testForLoop() {
+        File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/NoVariabilityFunctions.c");
+        Map<String, MetricResult> result = runMetricAsMap(testfile, null);
+        Assert.assertEquals(8.0, result.get("funcFor").getValue(), 0);
+    }
+    
+    /**
+     * Tests a function with a parameter and a switch statement.
+     */
+    @Test
+    public void testSwitchStatement() {
+        File testfile = new File(AbstractCodeMetricTests.TESTDATA, "loc/NoVariabilityFunctions.c");
+        Map<String, MetricResult> result = runMetricAsMap(testfile, null);
+        Assert.assertEquals(12.0, result.get("funcSwitch").getValue(), 0);
     }
 
 }

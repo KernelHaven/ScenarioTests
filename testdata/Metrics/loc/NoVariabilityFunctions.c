@@ -27,3 +27,78 @@ loop:
 	}
 
 }
+
+void functDoWhile(int a) {
+
+	char c = 'a';           // 1
+	int i = 0;              // 2
+	do {                    // 3
+		c++;                // 4
+
+		if (c == 'c') {     // 5
+			continue;       // 6
+		}
+
+		if (c == 'z') {     // 7
+			break;          // 8
+		}
+
+		i++;                // 9
+	} while (i < a);//Already counted
+
+}
+
+void funcFor(int a) {
+	char c = 'a';           // 1
+	int i;                  // 2
+	for (i = 0; i < a; i++) {//3
+		c++;                // 4
+
+		if (c == 'c') {     // 5
+			continue;       // 6
+		}
+
+		if (c == 'z') {     // 7
+			break;          // 8
+		}
+
+	}
+}
+
+void funcWhile(int a) {
+	char c = 'a';           // 1
+	int i = 0;              // 2
+	while (!(i < a)) {      // 3
+		++c;                // 4
+
+		if (c == 'c') {     // 5
+			continue;       // 6
+		}
+
+		if (c == 'z') {     // 7
+			break;          // 8
+		}
+
+		i++;                // 9
+	}
+}
+
+char funcSwitch(int a) {
+	char result = '\0';     // 1
+
+	switch (a) {            // 2
+	case 0:                 // 3
+		result = 'a';       // 4
+		break;              // 5
+
+	case 1:                 // 6
+	case 2:                 // 7
+		result = 'b';       // 8
+		break;              // 9
+
+	default:                //10
+		result = 'c';       //11
+	}
+
+	return result;          //12
+}
