@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import net.ssehub.kernel_haven.scenario_tests.metrics.AllMetricTests;
+
 /**
  * All scenario tests.
  *
@@ -13,6 +15,8 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+    AllMetricTests.class,
+    
     UndertakerDeadCode.class,
     })
 public class AllTests {
