@@ -1,6 +1,10 @@
 // Expected Metric Values as follows:
 //                          dLoC        McCabe
 
+void funcEmpty() {          //          1
+    ;                       // 1
+}
+
 void funcDecl() {           //          1
     int declaration;        // 1
 }

@@ -181,4 +181,15 @@ public abstract class AbstractCodeMetricTests {
         
         return resultMap;
     }
+    
+    /**
+     * Tests the correct output of a function metric.
+     * @param metricResult The result of a metric for one function to test.
+     * @param expectedLine The expected start line of the function.
+     * @param expectedResult The expected result of the metric for the specified function.
+     */
+    protected void assertMetricResult(MetricResult metricResult, int expectedLine, double expectedResult) {
+        Assert.assertEquals(expectedLine, metricResult.getLine());
+        Assert.assertEquals(expectedResult, metricResult.getValue(), 0);
+    }
 }
