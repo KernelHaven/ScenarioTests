@@ -111,5 +111,14 @@ public class LoCTests extends AbstractCodeMetricTests {
         
         assertMetricResult(result.get("funcSwitch"), 90, 12);
     }
+    
+    /**
+     * Tests behavior on a real file: font_8x16 taken from the Linux kernel.
+     */
+    @Test
+    public void testRealFont8x16() {
+        File testfile = new File(AbstractCodeMetricTests.TESTDATA, "Real/Linux4.15/font_8x16.c");
+        runMetric(testfile, null, true);
+    }
 
 }

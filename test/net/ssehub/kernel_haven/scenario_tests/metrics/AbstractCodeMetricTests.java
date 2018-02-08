@@ -106,6 +106,17 @@ public abstract class AbstractCodeMetricTests {
      * @return The result of the metric execution
      */
     protected List<MetricResult> runMetric(File file, Properties properties) {
+        return runMetric(file, properties, false);
+    }
+    
+    /**
+     * Runs the specified metric of {@link #getMetric()} on the specified file.
+     * @param file The model file to parse (its folder will be treated as source_tree root).
+     * @param properties Optional parameters (e.g., configuration parameters for the used metric).
+     * @param emptyResultExpected Specifies whether no result is expected (i.e., no function is contained in file)
+     * @return The result of the metric execution
+     */
+    protected List<MetricResult> runMetric(File file, Properties properties, boolean emptyResultExpected) {
         Assert.assertTrue("Specified test file does not exist: " + file, file.isFile());
         
         try {
@@ -126,7 +137,7 @@ public abstract class AbstractCodeMetricTests {
             // Metric / Analysis
             props.setProperty("analysis.class", "net.ssehub.kernel_haven.analysis.ConfiguredPipelineAnalysis");
             props.setProperty("analysis.pipeline", getMetric() + "(" + CodeFunctionFilter.class.getName()
-                + "(cmComponent()))");
+                    + "(cmComponent()))");
             
             // Additional settings
             if (null != properties) {
@@ -142,7 +153,7 @@ public abstract class AbstractCodeMetricTests {
             try {
                 DefaultSettings.registerAllSettings(config);
                 PipelineConfigurator.instance().init(config);
-
+                
             } catch (SetUpException e) {
                 Assert.fail("Invalid configuration detected: " + e.getMessage());
             }
@@ -157,7 +168,7 @@ public abstract class AbstractCodeMetricTests {
         String resultName = MemoryTableWriter.getTableNames().iterator().next();
         List<Object[]> result = MemoryTableWriter.getTable(resultName);
         Assert.assertNotNull("Result of " + resultName + " is null.", result);
-        Assert.assertFalse("Result of " + resultName + " is empty.", result.isEmpty());
+        Assert.assertEquals("Result of " + resultName + " is empty.", emptyResultExpected, result.isEmpty());
         
         List<MetricResult> resultList = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
