@@ -12,7 +12,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
     LoCTests.class,
-    McCabeTests.class
+    McCabeTests.class,
+    NestingDepthTests.class
     })
 public class AllMetricTests {
     
