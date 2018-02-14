@@ -13,7 +13,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
     LoCTests.class,
     McCabeTests.class,
-    NestingDepthTests.class
+    NestingDepthTests.class,
+    FanInOutTests.class
     })
 public class AllMetricTests {
     
