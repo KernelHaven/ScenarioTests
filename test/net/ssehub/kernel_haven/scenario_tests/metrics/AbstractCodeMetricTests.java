@@ -26,8 +26,6 @@ import net.ssehub.kernel_haven.srcml.SrcMLExtractor;
 import net.ssehub.kernel_haven.test_utils.MemoryTableCollection;
 import net.ssehub.kernel_haven.test_utils.MemoryTableWriter;
 import net.ssehub.kernel_haven.test_utils.TestConfiguration;
-import net.ssehub.kernel_haven.util.Logger;
-import net.ssehub.kernel_haven.util.Logger.Level;
 import net.ssehub.kernel_haven.variability_model.EmptyVariabilityModelExtractor;
 
 /**
@@ -42,17 +40,10 @@ public abstract class AbstractCodeMetricTests {
     private static final File GEN_FOLDER = new File(TESTDATA, "generated_tmp_Results");
     
     /**
-     * Initializes requires resources.
-     * <ul>
-     *     <li>Logger</li>
-     *     <li>Resource dir</li>
-     * </ul>
+     * Initializes the resource directory.
      */
     @BeforeClass
-    public static void initLogger() {
-        Logger.init();
-        Logger.get().setLevel(Level.DEBUG);
-        
+    public static void initResDir() {
         clearDirectory(RESOURCE_DIR, "resource");
     }
     
