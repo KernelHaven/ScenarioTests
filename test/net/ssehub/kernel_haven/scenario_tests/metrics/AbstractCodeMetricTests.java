@@ -26,6 +26,7 @@ import net.ssehub.kernel_haven.srcml.SrcMLExtractor;
 import net.ssehub.kernel_haven.test_utils.MemoryTableCollection;
 import net.ssehub.kernel_haven.test_utils.MemoryTableWriter;
 import net.ssehub.kernel_haven.test_utils.TestConfiguration;
+import net.ssehub.kernel_haven.util.io.TableCollectionWriterFactory;
 import net.ssehub.kernel_haven.variability_model.EmptyVariabilityModelExtractor;
 
 /**
@@ -111,6 +112,8 @@ public abstract class AbstractCodeMetricTests {
         Assert.assertTrue("Specified test file does not exist: " + file, file.isFile());
         
         try {
+            TableCollectionWriterFactory.INSTANCE.registerHandler("memory", MemoryTableCollection.class);
+            
             Properties props = new Properties();
             // General part
             props.setProperty("resource_dir", RESOURCE_DIR.getAbsolutePath());
@@ -119,7 +122,7 @@ public abstract class AbstractCodeMetricTests {
             props.setProperty(DefaultSettings.OUTPUT_DIR.getKey(), GEN_FOLDER.getAbsolutePath());
             props.setProperty(DefaultSettings.LOG_DIR.getKey(), GEN_FOLDER.getAbsolutePath());
             props.setProperty(DefaultSettings.LOG_FILE.getKey(), Boolean.FALSE.toString());
-            props.setProperty(DefaultSettings.ANALYSIS_RESULT.getKey(), MemoryTableCollection.class.getName());
+            props.setProperty(DefaultSettings.ANALYSIS_RESULT.getKey(), "memory");
             
             // Extractor
             props.setProperty("code.extractor.class", getExtractor());
