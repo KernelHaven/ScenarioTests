@@ -2,7 +2,7 @@
 
 <!-- author: Sascha El-Sharkawy, Adam -->
 <project name="ScenarioTests" default="jenkins" basedir=".">
-	<description>Builds, tests, and runs the project ScenarioTests.</description>
+	<description>Builds, tests, and runs the project ScenarioTests</description>
 
 	<!-- Override src.dir, since we don't have a src/ folder -->
 	<property name="src.dir" value="${basedir}/test" />
@@ -34,4 +34,5 @@
 		<get src="${MetricHaven.location_src}" dest="${dependencies.dir}/metrichaven.jar" />
 		<get src="${srcML.location_src}" dest="${dependencies.dir}/srcml.jar" />
 	</target>
+
 </project>
