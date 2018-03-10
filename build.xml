@@ -2,7 +2,7 @@
 
 <!-- author: Sascha El-Sharkawy, Adam -->
 <project name="ScenarioTests" default="jenkins" basedir=".">
-	<description>Builds, tests, and runs the project ScenarioTests</description>
+	<description>Full scenario tests for KernelHaven</description>
 
 	<!-- Override src.dir, since we don't have a src/ folder -->
 	<property name="src.dir" value="${basedir}/test" />
