@@ -23,16 +23,6 @@ import net.ssehub.kernel_haven.util.io.csv.CsvReader;
 public class UndertakerDeadCode extends AbstractScenarioTest {
 
     @Override
-    protected File getPropertiesFile() {
-        return new File("testdata/UndertakerDeadCode/config.properties");
-    }
-    
-    @Override
-    protected File getSourceTree() {
-        return new File("testdata/UndertakerDeadCode/dead_code_linux");
-    }
-    
-    @Override
     protected void checkOutputDirResult(File dir) throws IOException {
         File[] files = dir.listFiles();
         assertThat(files.length, is(1));
