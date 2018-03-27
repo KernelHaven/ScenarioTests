@@ -16,8 +16,12 @@ import org.junit.runners.Suite.SuiteClasses;
     LoFTests.class,
     PLoFTests.class,
     
+    // Nesting depth tests
+    NestingDepthMaxTests.class,
+    NestingDepthAvgTests.class,
+    VPNestingDepthMaxTests.class,
+    
     McCabeTests.class,
-    NestingDepthTests.class,
     FanInOutTests.class,
     RobostnessTest.class
     })

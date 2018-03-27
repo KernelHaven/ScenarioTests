@@ -1,19 +1,28 @@
 // Expected Metric Values as follows:
-//                          LoF        PLOF 
+//                          LoF        PLOF     ND_MAX  ND_AVG
 
-void funcEmpty() {          //
+void funcEmpty() {          //                  0       0
     ;                       // 0        0
 }
 
-void funcDecl() {           //
+void funcDecl() {           //                  1       1
 #ifdef A
     int declaration;        // 1        1
 #endif
 }
 
-void funcHalfVariability() {
+void funcHalfVar() {        //                  1       2/1
 #ifdef A
     int declaration;        // 1        1
 #endif
-;                           // 1        0.5
+    ;                       // 1        0.5
+}
+
+void funcVarNesting() {     //                  2       2/1
+#ifdef A
+#ifdef B
+    int declaration;        // 1        1
+#endif                      // 1        1
+#endif
+    ;                       // 1        0.5
 }

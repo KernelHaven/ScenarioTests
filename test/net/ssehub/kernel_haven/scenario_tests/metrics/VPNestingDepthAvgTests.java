@@ -9,22 +9,23 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import net.ssehub.kernel_haven.metric_haven.metric_components.DLoC;
+import net.ssehub.kernel_haven.metric_haven.metric_components.NestingDepthMetric;
 
 /**
- * Tests metrics execution of Lines of Feature Code (LoF) metrics with srcML-Extractor.
+ * Tests metrics execution of nesting depth (<b>avg</b>) for variation point metrics (VP-NDavg) with srcML-Extractor.
  * @author El-Sharkawy
  *
  */
 @RunWith(Parameterized.class)
-public class LoFTests extends AbstractParameterizedTests {
-    
-    private static final Properties LOF_SETUP = new Properties();
+public class VPNestingDepthAvgTests extends AbstractParameterizedTests {
+
+    private static final Properties ND_AVG_SETUP = new Properties();
     
     static {
-        LOF_SETUP.setProperty(DLoC.LOC_TYPE_SETTING.getKey(), DLoC.LoFType.LOF.name());
+        ND_AVG_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
+            NestingDepthMetric.NDType.VP_ND_AVG.name());
     }
-
+    
     /**
      * Retrieves values from {@link #getParameters()}, creates, and executes the test.
      * @param fileName The name of the file to be tested.
@@ -32,8 +33,15 @@ public class LoFTests extends AbstractParameterizedTests {
      * @param expectedLineNo The expected starting line number of the function
      * @param expectedResultValue The expected value of the metric to compute.
      */
-    public LoFTests(String fileName, String testedFunctionName, int expectedLineNo, double expectedResultValue) {
+    public VPNestingDepthAvgTests(String fileName, String testedFunctionName, int expectedLineNo,
+        double expectedResultValue) {
+        
         super(fileName, testedFunctionName, expectedLineNo, expectedResultValue);
+    }
+    
+    @Override
+    protected String getMetric() {
+        return NestingDepthMetric.class.getName();
     }
     
     /**
@@ -41,28 +49,23 @@ public class LoFTests extends AbstractParameterizedTests {
      * 
      * @return The parameters of this test.
      */
-    @Parameters(name = "LoF: {1}")
+    @Parameters(name = "VP-NDavg: {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             {"VariabilityFunctions.c", "funcEmpty", 4, 0},
             {"VariabilityFunctions.c", "funcDecl", 8, 1},
-            {"VariabilityFunctions.c", "funcHalfVar", 14, 1},
-            {"VariabilityFunctions.c", "funcVarNesting", 21, 1}
+            {"VariabilityFunctions.c", "funcHalfVar", 14, 1.0 / 2},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 2.0 / 2}
             
         });
     }
     
-    @Override
-    protected String getMetric() {
-        return DLoC.class.getName();
-    }
-    
     /**
-     * Executes the LoF tests.
+     * Executes the VP-NDavg tests.
      */
     @Test
     public void test() {
-        super.test(LOF_SETUP);
+        super.test(ND_AVG_SETUP);
     }
-    
+
 }

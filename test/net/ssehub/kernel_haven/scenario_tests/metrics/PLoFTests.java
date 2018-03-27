@@ -46,7 +46,8 @@ public class PLoFTests extends AbstractParameterizedTests {
         return Arrays.asList(new Object[][] {
             {"VariabilityFunctions.c", "funcEmpty", 4, 0},
             {"VariabilityFunctions.c", "funcDecl", 8, 1},
-            {"VariabilityFunctions.c", "funcHalfVariability", 14, 0.5}
+            {"VariabilityFunctions.c", "funcHalfVar", 14, 0.5},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 0.5}
             
         });
     }
