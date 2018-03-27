@@ -20,6 +20,7 @@ import org.junit.runners.Suite.SuiteClasses;
     NestingDepthMaxTests.class,
     NestingDepthAvgTests.class,
     VPNestingDepthMaxTests.class,
+    VPNestingDepthAvgTests.class,
     
     McCabeTests.class,
     FanInOutTests.class,
