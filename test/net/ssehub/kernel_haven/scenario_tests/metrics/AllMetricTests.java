@@ -22,7 +22,10 @@ import org.junit.runners.Suite.SuiteClasses;
     VPNestingDepthMaxTests.class,
     VPNestingDepthAvgTests.class,
     
+    // McCabe Tests
     McCabeTests.class,
+    McCabeOnVpTests.class,
+    
     FanInOutTests.class,
     RobostnessTest.class
     })
