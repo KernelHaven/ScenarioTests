@@ -95,8 +95,8 @@ char funcSwitch(int a) {    //          1       1       12/7
 		result = 'a';       // 4                2
 		break;              // 5
 
-	case 1:                 // 6        3
-	case 2:                 // 7        4
+	case 1:                 // 6
+	case 2:                 // 7        3
 		result = 'b';       // 8
 		break;              // 9
 

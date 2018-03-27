@@ -44,8 +44,7 @@ public class McCabeTests extends AbstractParameterizedTests {
             {"NoVariabilityFunctions.c", "functDoWhile", 35, 4},
             {"NoVariabilityFunctions.c", "funcWhile", 72, 4},
             {"NoVariabilityFunctions.c", "funcFor", 55, 4},
-            
-            {"NoVariabilityFunctions.c", "funcSwitch", 90, 4}
+            {"NoVariabilityFunctions.c", "funcSwitch", 90, 3}
             
         });
     }
