@@ -26,6 +26,11 @@ import org.junit.runners.Suite.SuiteClasses;
     McCabeTests.class,
     McCabeOnVpTests.class,
     
+    // Variables per Function Tests
+    VariablesPerFunctionInternalTests.class,
+    VariablesPerFunctionExternalTests.class,
+    VariablesPerFunctionAllTests.class,
+    
     FanInOutTests.class,
     RobostnessTest.class
     })
