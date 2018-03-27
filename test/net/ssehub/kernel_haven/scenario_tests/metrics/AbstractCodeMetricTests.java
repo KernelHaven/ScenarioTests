@@ -78,7 +78,7 @@ public abstract class AbstractCodeMetricTests {
     }
 
     /**
-     * Returns the fully qualified class name of the extractor to use. PEr default srcML will be used.
+     * Returns the fully qualified class name of the extractor to use. Per default srcML will be used.
      * @return The fully qualified class name of the extractor to use.
      */
     protected String getExtractor() {
@@ -194,7 +194,9 @@ public abstract class AbstractCodeMetricTests {
      * @param expectedResult The expected result of the metric for the specified function.
      */
     protected void assertMetricResult(MetricResult metricResult, int expectedLine, double expectedResult) {
-        Assert.assertEquals(expectedLine, metricResult.getLine());
-        Assert.assertEquals(expectedResult, metricResult.getValue(), 0);
+        Assert.assertEquals("Wrong start line for \"" + metricResult.getContext() + "\"", expectedLine,
+            metricResult.getLine());
+        Assert.assertEquals("Wrong metric result for \"" + metricResult.getContext() + "\"",
+            expectedResult, metricResult.getValue(), 0);
     }
 }

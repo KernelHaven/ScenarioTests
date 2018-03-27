@@ -14,7 +14,8 @@ import org.junit.runners.Suite.SuiteClasses;
     LoCTests.class,
     McCabeTests.class,
     NestingDepthTests.class,
-    FanInOutTests.class
+    FanInOutTests.class,
+    RobostnessTest.class
     })
 public class AllMetricTests {
     
