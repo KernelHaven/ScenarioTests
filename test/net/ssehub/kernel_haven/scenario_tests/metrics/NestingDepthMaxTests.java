@@ -52,6 +52,7 @@ public class NestingDepthMaxTests extends AbstractParameterizedTests {
     @Parameters(name = "NDmax: {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
+            // Code without CPP
             {"NoVariabilityFunctions.c", "funcEmpty", 4, 1},
             {"NoVariabilityFunctions.c", "funcDecl", 8, 1},
             {"NoVariabilityFunctions.c", "funcIfElse", 12, 2},
@@ -59,7 +60,13 @@ public class NestingDepthMaxTests extends AbstractParameterizedTests {
             {"NoVariabilityFunctions.c", "functDoWhile", 35, 3},
             {"NoVariabilityFunctions.c", "funcWhile", 72, 3},
             {"NoVariabilityFunctions.c", "funcFor", 55, 3},
-            {"NoVariabilityFunctions.c", "funcSwitch", 90, 2}
+            {"NoVariabilityFunctions.c", "funcSwitch", 90, 2},
+            
+            // Code with CPP
+            {"VariabilityFunctions.c", "funcEmpty", 4, 1},
+            {"VariabilityFunctions.c", "funcDecl", 8, 1},
+            {"VariabilityFunctions.c", "funcHalfVar", 14, 1},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 1}
             
         });
     }
