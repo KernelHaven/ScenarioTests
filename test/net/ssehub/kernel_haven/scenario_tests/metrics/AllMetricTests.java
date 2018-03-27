@@ -11,7 +11,11 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+    // Lines of Code variations
     LoCTests.class,
+    LoFTests.class,
+    PLoFTests.class,
+    
     McCabeTests.class,
     NestingDepthTests.class,
     FanInOutTests.class,
