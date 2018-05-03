@@ -18,6 +18,7 @@ abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
     private static Map<Class<? extends AbstractParameterizedTests>, Map<String, MetricResult>> chachedResults
         = new HashMap<>();
     private static Map<Class<? extends AbstractParameterizedTests>, File> chachedFiles = new HashMap<>();
+    private static Properties lastConfig;
     
     private File testCodeFile;
     private String testedFunctionName;
@@ -49,8 +50,9 @@ abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
     public void test(Properties properties) {
         // Avoid running extractor multiple times on same file
         Map<String, MetricResult> result;
-        if (testCodeFile.equals(chachedFiles.get(getClass())) && chachedResults.get(getClass()) != null) {
-            // For the same sub lass and the same test file and result already exists.
+        if (testCodeFile.equals(chachedFiles.get(getClass())) && chachedResults.get(getClass()) != null
+            && lastConfig == properties) {
+            // For the same sub class and the same test file and result already exists.
             result = chachedResults.get(getClass());
         } else {
             // No cached result exist, parse the file
@@ -58,6 +60,7 @@ abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
             
             chachedFiles.put(getClass(), testCodeFile);
             chachedResults.put(getClass(), result);
+            lastConfig = properties;
         }
         
         assertMetricResult(result.get(testedFunctionName), expectedLineNo, expectedResultValue);

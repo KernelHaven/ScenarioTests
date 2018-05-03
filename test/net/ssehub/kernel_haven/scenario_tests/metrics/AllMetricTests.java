@@ -17,10 +17,7 @@ import org.junit.runners.Suite.SuiteClasses;
     PLoFTests.class,
     
     // Nesting depth tests
-    NestingDepthMaxTests.class,
-    NestingDepthAvgTests.class,
-    VPNestingDepthMaxTests.class,
-    VPNestingDepthAvgTests.class,
+    NestingDepthTests.class,
     
     // McCabe Tests
     McCabeTests.class,

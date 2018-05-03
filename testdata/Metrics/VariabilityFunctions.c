@@ -28,7 +28,7 @@ void funcVarNesting() {     //                  1       1       2           2/2 
 }
 
 #ifdef A
-void conditionalFunction1() {//                 1       1       2           2/1         2       1       1       2       
+void conditionalFunction1() {//                 1       1       2           1/1         2       1       1       2       
 #ifdef B
     ;
 #endif
@@ -41,4 +41,14 @@ void conditionalFunction2() {//                 1       1       2           2/1 
     ;
 #endif
 #endif
+}
+
+void funcCppElse() {        //          3/4     1       1      1           3/4         1       1       0       1
+#ifdef A
+    int declaration;        // 1        1                                              2
+#else
+    ;                       // 2
+    ;                       // 3
+#endif
+    ;
 }
