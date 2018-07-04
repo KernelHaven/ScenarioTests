@@ -16,7 +16,6 @@ import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFuncti
 import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric.VarType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.FeatureDistanceType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
-import net.ssehub.kernel_haven.scenario_tests.metrics.AbstractCodeMetricTests;
 import net.ssehub.kernel_haven.scenario_tests.metrics.AbstractParameterizedTests;
 import net.ssehub.kernel_haven.test_utils.PseudoVariabilityExtractor;
 import net.ssehub.kernel_haven.variability_model.SourceLocation;
@@ -38,18 +37,6 @@ public class FeatureDistanceTests extends AbstractParameterizedTests {
         VAR_INTERNAL.setProperty(MetricSettings.LOCATION_DISTANCE_SETTING.getKey(),
             FeatureDistanceType.SHORTEST_DISTANCE.name());
         
-        // Configuration of variability model
-        VariabilityVariable varA = new VariabilityVariable("A", "bool");
-        SourceLocation srcVarA = new SourceLocation(new File(AbstractCodeMetricTests.TESTDATA.getParentFile(),
-            "A.varModel"), 1);
-        varA.addLocation(srcVarA);
-        VariabilityVariable varB = new VariabilityVariable("B", "bool");
-        SourceLocation srcVarB = new SourceLocation(new File(AbstractCodeMetricTests.TESTDATA.getParentFile()
-            .getParentFile(), "B.varModel"), 1);
-        varB.addLocation(srcVarB);
-        
-        PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB);
-        PseudoVariabilityExtractor.setAttributes(Attribute.SOURCE_LOCATIONS);
     }
     
     /**
@@ -63,6 +50,19 @@ public class FeatureDistanceTests extends AbstractParameterizedTests {
         double expectedResultValue) {
         
         super(fileName, testedFunctionName, expectedLineNo, expectedResultValue);
+        
+        // Configuration of variability model
+        VariabilityVariable varA = new VariabilityVariable("A", "bool");
+        SourceLocation srcVarA = new SourceLocation(new File(getTestFile().getAbsoluteFile().getParentFile(),
+                "A.varModel"), 1);
+        varA.addLocation(srcVarA);
+        VariabilityVariable varB = new VariabilityVariable("B", "bool");
+        SourceLocation srcVarB = new SourceLocation(new File(getTestFile().getAbsoluteFile().getParentFile()
+                .getParentFile(), "B.varModel"), 1);
+        varB.addLocation(srcVarB);
+        
+        PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB);
+        PseudoVariabilityExtractor.setAttributes(Attribute.SOURCE_LOCATIONS);
     }
     
     @Override

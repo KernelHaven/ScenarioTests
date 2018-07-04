@@ -42,6 +42,13 @@ public abstract class AbstractParameterizedTests extends AbstractCodeMetricTests
         this.expectedResultValue = expectedResultValue;
     }
 
+    /**
+     * Returns the File representation of the file to be tested.
+     * @return The measured test file.
+     */
+    protected File getTestFile() {
+        return testCodeFile;
+    }
     
     /**
      * Tests the correct metric result.
