@@ -4,6 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
+
 /**
  * All metric scenario tests.
  *
@@ -24,12 +26,14 @@ import org.junit.runners.Suite.SuiteClasses;
     McCabeOnVpTests.class,
     
     // Variables per Function Tests
-    VariablesPerFunctionInternalTests.class,
-    VariablesPerFunctionExternalTests.class,
     VariablesPerFunctionAllTests.class,
+    VariablesPerFunctionExternalTests.class,
+    VariablesPerFunctionInternalTests.class,
     
     FanInOutTests.class,
-    RobostnessTest.class
+    RobostnessTest.class,
+    
+    AllWeightsTests.class,
     })
 public class AllMetricTests {
     

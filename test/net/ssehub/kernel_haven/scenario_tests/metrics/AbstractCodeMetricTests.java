@@ -18,6 +18,7 @@ import org.junit.BeforeClass;
 import net.ssehub.kernel_haven.PipelineConfigurator;
 import net.ssehub.kernel_haven.SetUpException;
 import net.ssehub.kernel_haven.build_model.EmptyBuildModelExtractor;
+import net.ssehub.kernel_haven.config.Configuration;
 import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
@@ -25,6 +26,7 @@ import net.ssehub.kernel_haven.scenario_tests.AllTests;
 import net.ssehub.kernel_haven.srcml.SrcMLExtractor;
 import net.ssehub.kernel_haven.test_utils.MemoryTableCollection;
 import net.ssehub.kernel_haven.test_utils.MemoryTableWriter;
+import net.ssehub.kernel_haven.test_utils.PseudoVariabilityExtractor;
 import net.ssehub.kernel_haven.test_utils.TestConfiguration;
 import net.ssehub.kernel_haven.util.io.TableCollectionWriterFactory;
 import net.ssehub.kernel_haven.variability_model.EmptyVariabilityModelExtractor;
@@ -98,7 +100,7 @@ public abstract class AbstractCodeMetricTests {
      * @return The result of the metric execution
      */
     protected List<MetricResult> runMetric(File file, Properties properties) {
-        return runMetric(file, properties, false);
+        return runMetric(file, properties, false, false);
     }
     
     /**
@@ -106,56 +108,57 @@ public abstract class AbstractCodeMetricTests {
      * @param file The model file to parse (its folder will be treated as source_tree root).
      * @param properties Optional parameters (e.g., configuration parameters for the used metric).
      * @param emptyResultExpected Specifies whether no result is expected (i.e., no function is contained in file)
+     * @param usePseudoVariabilityExtractor If <tt>true</tt> the {@link PseudoVariabilityExtractor} is used
+     *     (but not configured).
      * @return The result of the metric execution
      */
-    protected List<MetricResult> runMetric(File file, Properties properties, boolean emptyResultExpected) {
-        Assert.assertTrue("Specified test file does not exist: " + file, file.isFile());
+    protected List<MetricResult> runMetric(File file, Properties properties, boolean emptyResultExpected,
+        boolean usePseudoVariabilityExtractor) {
         
-        try {
-            TableCollectionWriterFactory.INSTANCE.registerHandler("memory", MemoryTableCollection.class);
-            
-            Properties props = new Properties();
-            // General part
-            props.setProperty("resource_dir", RESOURCE_DIR.getAbsolutePath());
-            props.setProperty("source_tree", file.getParentFile().getAbsolutePath());
-            props.setProperty(DefaultSettings.PLUGINS_DIR.getKey(), RESOURCE_DIR.getAbsolutePath());
-            props.setProperty(DefaultSettings.OUTPUT_DIR.getKey(), GEN_FOLDER.getAbsolutePath());
-            props.setProperty(DefaultSettings.LOG_DIR.getKey(), GEN_FOLDER.getAbsolutePath());
-            props.setProperty(DefaultSettings.LOG_FILE.getKey(), Boolean.FALSE.toString());
-            props.setProperty(DefaultSettings.ANALYSIS_RESULT.getKey(), "memory");
-            
-            // Extractor
-            props.setProperty("code.extractor.class", getExtractor());
-            props.setProperty("code.extractor.files", file.getName());
-            
-            // Metric / Analysis
-            props.setProperty("analysis.class", "net.ssehub.kernel_haven.analysis.ConfiguredPipelineAnalysis");
+        Assert.assertTrue("Specified test file does not exist: " + file, file.isFile());
+        TableCollectionWriterFactory.INSTANCE.registerHandler("memory", MemoryTableCollection.class);
+        
+        Properties props = new Properties();
+        // General part
+        props.setProperty("resource_dir", RESOURCE_DIR.getAbsolutePath());
+        props.setProperty("source_tree", file.getParentFile().getAbsolutePath());
+        props.setProperty(DefaultSettings.PLUGINS_DIR.getKey(), RESOURCE_DIR.getAbsolutePath());
+        props.setProperty(DefaultSettings.OUTPUT_DIR.getKey(), GEN_FOLDER.getAbsolutePath());
+        props.setProperty(DefaultSettings.LOG_DIR.getKey(), GEN_FOLDER.getAbsolutePath());
+        props.setProperty(DefaultSettings.LOG_FILE.getKey(), Boolean.FALSE.toString());
+        props.setProperty(DefaultSettings.ANALYSIS_RESULT.getKey(), "memory");
+        
+        // Extractor
+        props.setProperty("code.extractor.class", getExtractor());
+        props.setProperty("code.extractor.files", file.getName());
+        
+        // Metric / Analysis
+        props.setProperty("analysis.class", "net.ssehub.kernel_haven.analysis.ConfiguredPipelineAnalysis");
+        if (usePseudoVariabilityExtractor) {
             props.setProperty("analysis.pipeline", getMetric() + "(" + CodeFunctionFilter.class.getName()
-                    + "(cmComponent()))");
+                + "(cmComponent()), vmComponent())");
+        } else {
+            props.setProperty("analysis.pipeline", getMetric() + "(" + CodeFunctionFilter.class.getName()
+                + "(cmComponent()))");
             
-            // Additional settings
-            if (null != properties) {
-                props.putAll(properties);
-            }
-            
-            // Unused extractors
-            props.setProperty("variability.extractor.class", EmptyVariabilityModelExtractor.class.getName());
-            props.setProperty("build.extractor.class", EmptyBuildModelExtractor.class.getName());
-            
-            TestConfiguration config = new TestConfiguration(props);
-            
-            try {
-                DefaultSettings.registerAllSettings(config);
-                PipelineConfigurator.instance().init(config);
-                
-            } catch (SetUpException e) {
-                Assert.fail("Invalid configuration detected: " + e.getMessage());
-            }
-            PipelineConfigurator.instance().instantiateExtractors();
-            PipelineConfigurator.instance().execute();
-        } catch (SetUpException exc) {
-            Assert.fail("Failed to initialize metric analysis: " + exc.getMessage());
         }
+        
+        // Additional settings
+        if (null != properties) {
+            props.putAll(properties);
+        }
+        
+        // Variability model extractor
+        if (usePseudoVariabilityExtractor) {
+            props.put("variability.extractor.class", PseudoVariabilityExtractor.class.getName());
+        } else {
+            props.setProperty("variability.extractor.class", EmptyVariabilityModelExtractor.class.getName());
+        }
+        
+        // Build model extractor
+        props.setProperty("build.extractor.class", EmptyBuildModelExtractor.class.getName());
+        
+        executePipeline(props);
         
         // There should be exactly one result:
         Assert.assertEquals(1, MemoryTableWriter.getTableNames().size());
@@ -169,6 +172,27 @@ public abstract class AbstractCodeMetricTests {
             resultList.add((MetricResult) result.get(i)[0]);
         }
         return resultList;
+    }
+
+    /**
+     * Creates a {@link Configuration} based on the given properties and executes the configured pipeline.
+     * @param props The settings to take for the pipeline.
+     */
+    private void executePipeline(Properties props) {
+        try {
+            TestConfiguration config = new TestConfiguration(props);
+            DefaultSettings.registerAllSettings(config);
+            PipelineConfigurator.instance().init(config);
+            
+        } catch (SetUpException e) {
+            Assert.fail("Invalid configuration detected: " + e.getMessage());
+        }
+        try {
+            PipelineConfigurator.instance().instantiateExtractors();
+            PipelineConfigurator.instance().execute();
+        } catch (SetUpException exc) {
+            Assert.fail("Failed to initialize metric analysis: " + exc.getMessage());
+        }
     }
     
     /**

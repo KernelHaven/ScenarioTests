@@ -13,17 +13,17 @@ import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFuncti
 import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric.VarType;
 
 /**
- * Tests metrics execution of variables per function (<b>all</b>) metrics with srcML-Extractor.
+ * Tests metrics execution of variables per function (<b>internal</b>) metrics with srcML-Extractor.
  * @author El-Sharkawy
  *
  */
 @RunWith(Parameterized.class)
 public class VariablesPerFunctionInternalTests extends AbstractParameterizedTests {
 
-    private static final Properties VAR_ALL = new Properties();
+    private static final Properties VAR_INTERNAL = new Properties();
     
     static {
-        VAR_ALL.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.ALL.name());
+        VAR_INTERNAL.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
     }
     
     /**
@@ -49,14 +49,14 @@ public class VariablesPerFunctionInternalTests extends AbstractParameterizedTest
      * 
      * @return The parameters of this test.
      */
-    @Parameters(name = "Vars (All): {1}")
+    @Parameters(name = "Vars (Internal): {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             {"VariabilityFunctions.c", "funcEmpty", 4, 0},
             {"VariabilityFunctions.c", "funcDecl", 8, 1},
             {"VariabilityFunctions.c", "funcHalfVar", 14, 1},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 2},
-            {"VariabilityFunctions.c", "conditionalFunction1", 31, 2},
+            {"VariabilityFunctions.c", "conditionalFunction1", 31, 1},
             {"VariabilityFunctions.c", "conditionalFunction2", 38, 2}
         });
     }
@@ -66,7 +66,7 @@ public class VariablesPerFunctionInternalTests extends AbstractParameterizedTest
      */
     @Test
     public void test() {
-        super.test(VAR_ALL);
+        super.test(VAR_INTERNAL);
     }
 
 }

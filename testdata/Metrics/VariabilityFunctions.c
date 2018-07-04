@@ -28,7 +28,7 @@ void funcVarNesting() {     //                  1       1       2           2/2 
 }
 
 #ifdef A
-void conditionalFunction1() {//                 1       1       2           1/1         2       1       1       2       
+void conditionalFunction1() {//                 1       1       1           1/1         2       1       1       2       
 #ifdef B
     ;
 #endif

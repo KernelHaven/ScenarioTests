@@ -13,7 +13,7 @@ import net.ssehub.kernel_haven.metric_haven.MetricResult;
  * @author El-Sharkawy
  *
  */
-abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
+public abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
     
     private static Map<Class<? extends AbstractParameterizedTests>, Map<String, MetricResult>> chachedResults
         = new HashMap<>();
@@ -33,7 +33,7 @@ abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
      * @param expectedLineNo The expected starting line number of the function
      * @param expectedResultValue The expected value of the metric to compute.
      */
-    AbstractParameterizedTests(String fileName, String testedFunctionName, int expectedLineNo,
+    public AbstractParameterizedTests(String fileName, String testedFunctionName, int expectedLineNo,
         double expectedResultValue) {
         
         testCodeFile = new File(AbstractCodeMetricTests.TESTDATA, fileName);
