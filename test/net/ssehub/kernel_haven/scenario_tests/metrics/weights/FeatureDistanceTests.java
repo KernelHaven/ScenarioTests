@@ -52,13 +52,14 @@ public class FeatureDistanceTests extends AbstractParameterizedTests {
         super(fileName, testedFunctionName, expectedLineNo, expectedResultValue);
         
         // Configuration of variability model
+        // Variable A's distance is 2
         VariabilityVariable varA = new VariabilityVariable("A", "bool");
         SourceLocation srcVarA = new SourceLocation(new File(getTestFile().getAbsoluteFile().getParentFile(),
-                "A.varModel"), 1);
+            "A.varModel"), 1);
         varA.addLocation(srcVarA);
+        // Variable B's distance is 3
         VariabilityVariable varB = new VariabilityVariable("B", "bool");
-        SourceLocation srcVarB = new SourceLocation(new File(getTestFile().getAbsoluteFile().getParentFile()
-                .getParentFile(), "B.varModel"), 1);
+        SourceLocation srcVarB = new SourceLocation(new File(getTestFile().getAbsoluteFile(), "B.varModel"), 1);
         varB.addLocation(srcVarB);
         
         PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB);
