@@ -45,7 +45,7 @@ public class FeatureDistanceTests extends AbstractParameterizedTests {
         varA.addLocation(srcVarA);
         VariabilityVariable varB = new VariabilityVariable("B", "bool");
         SourceLocation srcVarB = new SourceLocation(new File(AbstractCodeMetricTests.TESTDATA.getParentFile()
-            .getParentFile(), "/B.varModel"), 1);
+            .getParentFile(), "B.varModel"), 1);
         varB.addLocation(srcVarB);
         
         PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB);
