@@ -96,7 +96,8 @@ public class CTCRTests extends AbstractParameterizedTests {
         return Arrays.asList(new Object[][] {
             {"VariabilityFunctions.c", "funcVarNesting", 21, 6, CTCRType.OUTGOING_CONNECTIONS},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 4, CTCRType.INCOMIG_CONNECTIONS},
-            {"VariabilityFunctions.c", "funcVarNesting", 21, 7, CTCRType.ALL_CTCR}
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 7, CTCRType.ALL_CTCR},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 2, CTCRType.NO_CTCR}
         });
     }
     
