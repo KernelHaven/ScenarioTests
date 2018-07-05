@@ -15,9 +15,9 @@ import net.ssehub.kernel_haven.metric_haven.MetricResult;
  */
 public abstract class AbstractParameterizedTests extends AbstractCodeMetricTests {
     
-    private static Map<Class<? extends AbstractParameterizedTests>, Map<String, MetricResult>> chachedResults
+    private static Map<Object, Map<String, MetricResult>> chachedResults
         = new HashMap<>();
-    private static Map<Class<? extends AbstractParameterizedTests>, File> chachedFiles = new HashMap<>();
+    private static Map<Object, File> chachedFiles = new HashMap<>();
     private static Properties lastConfig;
     
     private File testCodeFile;
@@ -57,19 +57,29 @@ public abstract class AbstractParameterizedTests extends AbstractCodeMetricTests
     public void test(Properties properties) {
         // Avoid running extractor multiple times on same file
         Map<String, MetricResult> result;
-        if (testCodeFile.equals(chachedFiles.get(getClass())) && chachedResults.get(getClass()) != null
+        if (testCodeFile.equals(chachedFiles.get(getIdentifier())) && chachedResults.get(getIdentifier()) != null
             && lastConfig == properties) {
             // For the same sub class and the same test file and result already exists.
-            result = chachedResults.get(getClass());
+            result = chachedResults.get(getIdentifier());
         } else {
             // No cached result exist, parse the file
             result = runMetricAsMap(testCodeFile, properties);
             
-            chachedFiles.put(getClass(), testCodeFile);
-            chachedResults.put(getClass(), result);
+            chachedFiles.put(getIdentifier(), testCodeFile);
+            chachedResults.put(getIdentifier(), result);
             lastConfig = properties;
         }
         
         assertMetricResult(result.get(testedFunctionName), expectedLineNo, expectedResultValue);
+    }
+    
+    /**
+     * Returns a unique identifier for the test case. Whenever the identifier returns the same object, cached
+     * metric results may be reused to avoid multiple parsing and visiting of functions as different elements of the
+     * same metric result are used in tests belonging to the same identifier.
+     * @return A unique identifier, specifying when a set of already collected metric results can be reused.
+     */
+    protected Object getIdentifier() {
+        return this.getClass();
     }
 }

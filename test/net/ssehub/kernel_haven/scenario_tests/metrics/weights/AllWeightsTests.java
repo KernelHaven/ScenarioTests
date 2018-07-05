@@ -11,6 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+    CTCRTests.class,
     FeatureDistanceTests.class,
     })
 public class AllWeightsTests {
