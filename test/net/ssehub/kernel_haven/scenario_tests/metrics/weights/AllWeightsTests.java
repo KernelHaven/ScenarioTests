@@ -14,6 +14,7 @@ import org.junit.runners.Suite.SuiteClasses;
     CTCRTests.class,
     FeatureDistanceTests.class,
     VariabilityTypeMeasureTest.class,
+    HierarchyWeightTest.class,
     })
 public class AllWeightsTests {
     
