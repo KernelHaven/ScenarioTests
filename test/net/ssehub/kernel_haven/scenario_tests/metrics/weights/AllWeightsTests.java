@@ -13,6 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
     CTCRTests.class,
     FeatureDistanceTests.class,
+    VariabilityTypeMeasureTest.class,
     })
 public class AllWeightsTests {
     
