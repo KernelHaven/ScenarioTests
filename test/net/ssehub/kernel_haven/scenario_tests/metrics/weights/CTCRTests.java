@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -33,7 +34,28 @@ public class CTCRTests extends AbstractParameterizedTests {
 
     private static final Properties VAR_INTERNAL = new Properties();
     
-    static {
+    private CTCRType ctcrType;
+    
+    /**
+     * Retrieves values from {@link #getParameters()}, creates, and executes the test.
+     * @param fileName The name of the file to be tested.
+     * @param testedFunctionName The function to test
+     * @param expectedLineNo The expected starting line number of the function
+     * @param expectedResultValue The expected value of the metric to compute.
+     * @param ctcrType The CTCR variation to test.
+     */
+    public CTCRTests(String fileName, String testedFunctionName, int expectedLineNo,
+        double expectedResultValue, CTCRType ctcrType) {
+        
+        super(fileName, testedFunctionName, expectedLineNo, expectedResultValue);
+        this.ctcrType = ctcrType;
+    }
+    
+    /**
+     * Initializes the properties and sets the variability model for {@link PseudoVariabilityExtractor}.
+     */
+    @BeforeClass
+    public static void setup() {
         VAR_INTERNAL.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
         
         // Configuration of variability model
@@ -62,23 +84,6 @@ public class CTCRTests extends AbstractParameterizedTests {
         PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB, varC, varD);
         PseudoVariabilityExtractor.setAttributes(Attribute.CONSTRAINT_USAGE);
         
-    }
-    
-    private CTCRType ctcrType;
-    
-    /**
-     * Retrieves values from {@link #getParameters()}, creates, and executes the test.
-     * @param fileName The name of the file to be tested.
-     * @param testedFunctionName The function to test
-     * @param expectedLineNo The expected starting line number of the function
-     * @param expectedResultValue The expected value of the metric to compute.
-     * @param ctcrType The CTCR variation to test.
-     */
-    public CTCRTests(String fileName, String testedFunctionName, int expectedLineNo,
-        double expectedResultValue, CTCRType ctcrType) {
-        
-        super(fileName, testedFunctionName, expectedLineNo, expectedResultValue);
-        this.ctcrType = ctcrType;
     }
     
     @Override
