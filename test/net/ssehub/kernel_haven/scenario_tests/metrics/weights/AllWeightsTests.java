@@ -15,6 +15,7 @@ import org.junit.runners.Suite.SuiteClasses;
     FeatureDistanceTests.class,
     VariabilityTypeMeasureTest.class,
     HierarchyWeightTest.class,
+    StructureWeightTest.class,
     })
 public class AllWeightsTests {
     
