@@ -22,6 +22,7 @@ import net.ssehub.kernel_haven.config.Configuration;
 import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
+import net.ssehub.kernel_haven.metric_haven.metric_components.weights.WeigthsCache;
 import net.ssehub.kernel_haven.scenario_tests.AllTests;
 import net.ssehub.kernel_haven.srcml.SrcMLExtractor;
 import net.ssehub.kernel_haven.test_utils.MemoryTableCollection;
@@ -58,6 +59,7 @@ public abstract class AbstractCodeMetricTests {
      */
     @Before
     public void setUp() {
+        WeigthsCache.INSTANCE.clear();
         MemoryTableWriter.clear();
         clearDirectory(GEN_FOLDER, "ouput");
     }
