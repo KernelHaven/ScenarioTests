@@ -62,10 +62,16 @@ public class VariabilityTypeMeasureTest extends AbstractParameterizedTests {
         this.typeB = typeB;
         
         // Configuration of variability model
-        VariabilityVariable varA = new VariabilityVariable("A", typeA);
-        VariabilityVariable varB = new VariabilityVariable("B", typeB);
-        
-        PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB);
+        if (typeA != null) {
+            VariabilityVariable varA = new VariabilityVariable("A", typeA);
+            VariabilityVariable varB = new VariabilityVariable("B", typeB);
+            
+            PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB);
+        } else {
+            VariabilityVariable varB = new VariabilityVariable("B", typeB);
+            
+            PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varB);
+        }
     }
     
     @Override
@@ -85,6 +91,8 @@ public class VariabilityTypeMeasureTest extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "funcVarNesting", 21, 3, "tristate", "bool"},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 3, "bool", "tristate"},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 4, "tristate", "tristate"},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 1, null, "bool"},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 1, "doesnt_exist", "bool"},
         });
     }
     
