@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.metric_components.FanInOutMetric;
-import net.ssehub.kernel_haven.scenario_tests.RunOnlyOnWinOrLinux;
+import net.ssehub.kernel_haven.test_utils.RunOnlyOnWinOrLinux;
 
 /**
  * Tests metrics execution of Lines of Code metrics with srcML-Extractor.
