@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunctionMetric.VarType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric;
-import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric.VarType;
 
 /**
  * Tests metrics execution of variables per function (<b>internal</b>) metrics with srcML-Extractor.
