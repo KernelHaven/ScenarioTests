@@ -22,7 +22,8 @@ public class PLoFTests extends AbstractParameterizedTests {
     private static final Properties PLOF_SETUP = new Properties();
     
     static {
-        PLOF_SETUP.setProperty(DLoC.LOC_TYPE_SETTING.getKey(), DLoC.LoFType.PLOF.name());
+        PLOF_SETUP.setProperty(DLoC.LOC_TYPE_SETTING.getKey(),
+            net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC.LoFType.PLOF.name());
     }
 
     /**

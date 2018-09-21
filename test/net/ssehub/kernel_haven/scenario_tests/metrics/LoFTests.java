@@ -22,7 +22,8 @@ public class LoFTests extends AbstractParameterizedTests {
     private static final Properties LOF_SETUP = new Properties();
     
     static {
-        LOF_SETUP.setProperty(DLoC.LOC_TYPE_SETTING.getKey(), DLoC.LoFType.LOF.name());
+        LOF_SETUP.setProperty(DLoC.LOC_TYPE_SETTING.getKey(),
+            net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC.LoFType.LOF.name());
     }
 
     /**
