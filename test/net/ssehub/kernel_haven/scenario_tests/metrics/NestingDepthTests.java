@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth.NDType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.NestingDepthMetric;
 
 /**
@@ -26,13 +27,13 @@ public class NestingDepthTests extends AbstractParameterizedTests {
     
     static {
         ND_AVG_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
-                NestingDepthMetric.NDType.CLASSIC_ND_AVG.name());
+            NDType.CLASSIC_ND_AVG.name());
         ND_MAX_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
-                NestingDepthMetric.NDType.CLASSIC_ND_MAX.name());
+            NDType.CLASSIC_ND_MAX.name());
         VP_AVG_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
-                NestingDepthMetric.NDType.VP_ND_AVG.name());
+            NDType.VP_ND_AVG.name());
         VP_MAX_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
-                NestingDepthMetric.NDType.VP_ND_MAX.name());
+            NDType.VP_ND_MAX.name());
     }
     
     private Properties config;

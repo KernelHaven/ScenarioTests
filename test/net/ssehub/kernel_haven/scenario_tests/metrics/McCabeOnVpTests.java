@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity.CCType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.CyclomaticComplexityMetric;
 
 /**
@@ -23,7 +24,7 @@ public class McCabeOnVpTests extends AbstractParameterizedTests {
     
     static {
         CC_VP.setProperty(CyclomaticComplexityMetric.VARIABLE_TYPE_SETTING.getKey(),
-            CyclomaticComplexityMetric.CCType.VARIATION_POINTS.name());
+            CCType.VARIATION_POINTS.name());
     }
     
     /**

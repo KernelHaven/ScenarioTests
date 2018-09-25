@@ -15,7 +15,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
-import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunctionMetric.VarType;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.HierarchyType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
