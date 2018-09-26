@@ -22,6 +22,9 @@ import net.ssehub.kernel_haven.config.Configuration;
 import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
+import net.ssehub.kernel_haven.metric_haven.filter_components.FunctionMapCreator;
+import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
+import net.ssehub.kernel_haven.metric_haven.metric_components.CodeMetricsRunner;
 import net.ssehub.kernel_haven.metric_haven.metric_components.weights.WeigthsCache;
 import net.ssehub.kernel_haven.scenario_tests.AllTests;
 import net.ssehub.kernel_haven.srcml.SrcMLExtractor;
@@ -136,14 +139,15 @@ public abstract class AbstractCodeMetricTests {
         
         // Metric / Analysis
         props.setProperty("analysis.class", "net.ssehub.kernel_haven.analysis.ConfiguredPipelineAnalysis");
-        if (usePseudoVariabilityExtractor) {
-            props.setProperty("analysis.pipeline", getMetric() + "(" + CodeFunctionFilter.class.getName()
-                + "(cmComponent()), vmComponent())");
-        } else {
-            props.setProperty("analysis.pipeline", getMetric() + "(" + CodeFunctionFilter.class.getName()
-                + "(cmComponent()))");
-            
-        }
+        
+        props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey() + ".0", getMetric());
+        props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
+                + CodeFunctionFilter.class.getName() + "(cmComponent()), "
+                + "vmComponent(), "
+                + "bmComponent(), "
+                + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
+                + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
+                + ")");
         
         // Additional settings
         if (null != properties) {
