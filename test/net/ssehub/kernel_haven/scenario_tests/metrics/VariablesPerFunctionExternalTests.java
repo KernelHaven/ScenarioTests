@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
-import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric;
+import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 
 /**
  * Tests metrics execution of variables per function (<b>external</b>) metrics with srcML-Extractor.
@@ -23,7 +24,7 @@ public class VariablesPerFunctionExternalTests extends AbstractParameterizedTest
     private static final Properties VAR_EXTERNAL = new Properties();
     
     static {
-        VAR_EXTERNAL.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.EXTERNAL.name());
+        VAR_EXTERNAL.setProperty(MetricSettings.VARIABLE_TYPE_SETTING.getKey(), VarType.EXTERNAL.name());
     }
     
     /**
@@ -41,7 +42,7 @@ public class VariablesPerFunctionExternalTests extends AbstractParameterizedTest
     
     @Override
     protected String getMetric() {
-        return VariablesPerFunctionMetric.class.getName();
+        return VariablesPerFunction.class.getName();
     }
     
     /**

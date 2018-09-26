@@ -8,8 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut.FanType;
-import net.ssehub.kernel_haven.metric_haven.metric_components.FanInOutMetric;
+import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.test_utils.RunOnlyOnWinOrLinux;
 
 /**
@@ -24,15 +25,15 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     private static final Properties FAN_OUT_SETUP = new Properties();
     
     static {
-        FAN_IN_SETUP.setProperty(FanInOutMetric.FAN_TYPE_SETTING.getKey(),
+        FAN_IN_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
             FanType.CLASSICAL_FAN_IN_LOCALLY.name());
-        FAN_OUT_SETUP.setProperty(FanInOutMetric.FAN_TYPE_SETTING.getKey(),
+        FAN_OUT_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
             FanType.CLASSICAL_FAN_OUT_LOCALLY.name());
     }
     
     @Override
     protected String getMetric() {
-        return FanInOutMetric.class.getName();
+        return FanInOut.class.getName();
     }
     
     /**

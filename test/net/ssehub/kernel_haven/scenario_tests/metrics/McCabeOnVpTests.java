@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity.CCType;
-import net.ssehub.kernel_haven.metric_haven.metric_components.CyclomaticComplexityMetric;
+import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 
 /**
  * Tests metrics execution of McCabe on variation points with srcML-Extractor.
@@ -23,7 +24,7 @@ public class McCabeOnVpTests extends AbstractParameterizedTests {
     private static final Properties CC_VP = new Properties();
     
     static {
-        CC_VP.setProperty(CyclomaticComplexityMetric.VARIABLE_TYPE_SETTING.getKey(),
+        CC_VP.setProperty(MetricSettings.CC_VARIABLE_TYPE_SETTING.getKey(),
             CCType.VARIATION_POINTS.name());
     }
     
@@ -42,7 +43,7 @@ public class McCabeOnVpTests extends AbstractParameterizedTests {
     
     @Override
     protected String getMetric() {
-        return CyclomaticComplexityMetric.class.getName();
+        return CyclomaticComplexity.class.getName();
     }
     
 

@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.junit.Test;
 
-import net.ssehub.kernel_haven.metric_haven.metric_components.DLoC;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
 
 /**
  * Tests only that Extractor and analysis won't crash in certain situations.

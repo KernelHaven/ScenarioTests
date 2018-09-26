@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth.NDType;
-import net.ssehub.kernel_haven.metric_haven.metric_components.NestingDepthMetric;
+import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 
 /**
  * Tests metrics execution of nesting depth metrics with srcML-Extractor.
@@ -26,13 +27,13 @@ public class NestingDepthTests extends AbstractParameterizedTests {
     private static final Properties VP_MAX_SETUP = new Properties();
     
     static {
-        ND_AVG_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
+        ND_AVG_SETUP.setProperty(MetricSettings.ND_TYPE_SETTING.getKey(),
             NDType.CLASSIC_ND_AVG.name());
-        ND_MAX_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
+        ND_MAX_SETUP.setProperty(MetricSettings.ND_TYPE_SETTING.getKey(),
             NDType.CLASSIC_ND_MAX.name());
-        VP_AVG_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
+        VP_AVG_SETUP.setProperty(MetricSettings.ND_TYPE_SETTING.getKey(),
             NDType.VP_ND_AVG.name());
-        VP_MAX_SETUP.setProperty(NestingDepthMetric.ND_TYPE_SETTING.getKey(),
+        VP_MAX_SETUP.setProperty(MetricSettings.ND_TYPE_SETTING.getKey(),
             NDType.VP_ND_MAX.name());
     }
     
@@ -58,7 +59,7 @@ public class NestingDepthTests extends AbstractParameterizedTests {
     
     @Override
     protected String getMetric() {
-        return NestingDepthMetric.class.getName();
+        return NestingDepth.class.getName();
     }
     
 

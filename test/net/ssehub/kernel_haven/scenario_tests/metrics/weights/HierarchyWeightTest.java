@@ -15,8 +15,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
-import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.HierarchyType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.scenario_tests.metrics.AbstractParameterizedTests;
@@ -36,7 +36,7 @@ public class HierarchyWeightTest extends AbstractParameterizedTests {
     private static final Properties PROPERTIES = new Properties();
     
     static {
-        PROPERTIES.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
+        PROPERTIES.setProperty(MetricSettings.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
         
         PROPERTIES.setProperty(MetricSettings.HIERARCHY_WEIGHTS_SETTING.getKey(), "top:1, intermediate:10, leaf:100");
     }
@@ -98,7 +98,7 @@ public class HierarchyWeightTest extends AbstractParameterizedTests {
     
     @Override
     protected String getMetric() {
-        return VariablesPerFunctionMetric.class.getName();
+        return VariablesPerFunction.class.getName();
     }
     
     /**

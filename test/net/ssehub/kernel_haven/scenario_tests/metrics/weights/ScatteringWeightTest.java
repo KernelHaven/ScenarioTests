@@ -12,10 +12,10 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
 import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
-import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.SDType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.VariabilityTypeMeasureType;
@@ -34,13 +34,13 @@ public class ScatteringWeightTest extends AbstractParameterizedTests {
     private static final Properties PROPERTIES = new Properties();
     
     static {
-        PROPERTIES.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
+        PROPERTIES.setProperty(MetricSettings.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
         
         // override code.extractor.files to consider more than 1 file
         PROPERTIES.setProperty("code.extractor.files", "sd_1.c, sd_2.c");
         
         // override analysis.pipeline to include a scattering component
-        PROPERTIES.setProperty("analysis.pipeline", VariablesPerFunctionMetric.class.getName() + "("
+        PROPERTIES.setProperty("analysis.pipeline", VariablesPerFunction.class.getName() + "("
                 + CodeFunctionFilter.class.getName() + "(cmComponent()), "
                 + "vmComponent(),"
                 + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent())"
@@ -78,7 +78,7 @@ public class ScatteringWeightTest extends AbstractParameterizedTests {
     
     @Override
     protected String getMetric() {
-        return VariablesPerFunctionMetric.class.getName();
+        return VariablesPerFunction.class.getName();
     }
     
     /**

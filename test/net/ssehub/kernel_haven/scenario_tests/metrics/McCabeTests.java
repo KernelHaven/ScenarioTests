@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import net.ssehub.kernel_haven.metric_haven.metric_components.CyclomaticComplexityMetric;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity;
 
 /**
  * Tests metrics execution of classical McCabe metrics with srcML-Extractor.
@@ -51,7 +51,7 @@ public class McCabeTests extends AbstractParameterizedTests {
 
     @Override
     protected String getMetric() {
-        return CyclomaticComplexityMetric.class.getName();
+        return CyclomaticComplexity.class.getName();
     }
     
     /**

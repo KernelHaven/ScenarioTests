@@ -15,8 +15,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
-import net.ssehub.kernel_haven.metric_haven.metric_components.VariablesPerFunctionMetric;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.CTCRType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.scenario_tests.metrics.AbstractParameterizedTests;
@@ -56,7 +56,7 @@ public class CTCRTests extends AbstractParameterizedTests {
      */
     @BeforeClass
     public static void setup() {
-        VAR_INTERNAL.setProperty(VariablesPerFunctionMetric.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
+        VAR_INTERNAL.setProperty(MetricSettings.VARIABLE_TYPE_SETTING.getKey(), VarType.INTERNAL.name());
         
         // Configuration of variability model
         VariabilityVariable varA = new VariabilityVariable("A", "bool");
@@ -88,7 +88,7 @@ public class CTCRTests extends AbstractParameterizedTests {
     
     @Override
     protected String getMetric() {
-        return VariablesPerFunctionMetric.class.getName();
+        return VariablesPerFunction.class.getName();
     }
     
     /**

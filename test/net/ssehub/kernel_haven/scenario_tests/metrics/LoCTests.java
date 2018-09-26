@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import net.ssehub.kernel_haven.metric_haven.metric_components.DLoC;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
 
 /**
  * Tests metrics execution of Lines of Code metrics with srcML-Extractor.

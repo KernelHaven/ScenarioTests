@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import net.ssehub.kernel_haven.metric_haven.metric_components.DLoC;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
+import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 
 /**
  * Tests metrics execution of Percentage of Lines of Feature Code (PLoF) metrics with srcML-Extractor.
@@ -22,7 +23,7 @@ public class PLoFTests extends AbstractParameterizedTests {
     private static final Properties PLOF_SETUP = new Properties();
     
     static {
-        PLOF_SETUP.setProperty(DLoC.LOC_TYPE_SETTING.getKey(),
+        PLOF_SETUP.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(),
             net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC.LoFType.PLOF.name());
     }
 
