@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.junit.Test;
@@ -14,8 +15,6 @@ import org.junit.runners.Parameterized.Parameters;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
-import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
-import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.SDType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.VariabilityTypeMeasureType;
@@ -38,15 +37,6 @@ public class ScatteringWeightTest extends AbstractParameterizedTests {
         
         // override code.extractor.files to consider more than 1 file
         PROPERTIES.setProperty("code.extractor.files", "sd_1.c, sd_2.c");
-        
-        // override analysis.pipeline to include a scattering component
-        PROPERTIES.setProperty("analysis.pipeline", VariablesPerFunction.class.getName() + "("
-                + CodeFunctionFilter.class.getName() + "(cmComponent()), "
-                + "vmComponent(),"
-                + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent())"
-                + ")");
-        
-        System.out.println(PROPERTIES.get("analysis.pipeline"));
     }
     
     private SDType type;
@@ -108,6 +98,11 @@ public class ScatteringWeightTest extends AbstractParameterizedTests {
     @Override
     protected List<MetricResult> runMetric(File file, Properties properties) {
         return runMetric(file, properties, false, true, true);
+    }
+    
+    @Override
+    protected Map<String, MetricResult> runMetricAsMap(File file, Properties properties) {
+        return super.runMetricAsMap(file, properties, false, true, true);
     }
     
     @Override
