@@ -19,7 +19,7 @@ public class RobostnessTest extends AbstractCodeMetricTests {
     @Test
     public void testRealFont8x16() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "Real/Linux4.15/font_8x16.c");
-        runMetric(testfile, null, true, false);
+        runMetric(testfile, null, true, false, false);
     }
 
     @Override

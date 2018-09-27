@@ -141,7 +141,7 @@ public class HierarchyWeightTest extends AbstractParameterizedTests {
 
     @Override
     protected List<MetricResult> runMetric(File file, Properties properties) {
-        return runMetric(file, properties, false, true);
+        return runMetric(file, properties, false, true, true);
     }
     
     @Override

@@ -22,6 +22,8 @@ import net.ssehub.kernel_haven.config.Configuration;
 import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
+import net.ssehub.kernel_haven.metric_haven.filter_components.FunctionMapCreator;
+import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
 import net.ssehub.kernel_haven.metric_haven.metric_components.CodeMetricsRunner;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.metric_haven.metric_components.weights.WeigthsCache;
@@ -105,7 +107,7 @@ public abstract class AbstractCodeMetricTests {
      * @return The result of the metric execution
      */
     protected List<MetricResult> runMetric(File file, Properties properties) {
-        return runMetric(file, properties, false, false);
+        return runMetric(file, properties, false, false, false);
     }
     
     /**
@@ -115,10 +117,12 @@ public abstract class AbstractCodeMetricTests {
      * @param emptyResultExpected Specifies whether no result is expected (i.e., no function is contained in file)
      * @param usePseudoVariabilityExtractor If <tt>true</tt> the {@link PseudoVariabilityExtractor} is used
      *     (but not configured).
+     * @param useFullInputs Whether to create a {@link CodeMetricsRunner} with all inputs available.
+     *     
      * @return The result of the metric execution
      */
     protected List<MetricResult> runMetric(File file, Properties properties, boolean emptyResultExpected,
-        boolean usePseudoVariabilityExtractor) {
+        boolean usePseudoVariabilityExtractor, boolean useFullInputs) {
         
         Assert.assertTrue("Specified test file does not exist: " + file, file.isFile());
         TableCollectionWriterFactory.INSTANCE.registerHandler("memory", MemoryTableCollection.class);
@@ -141,25 +145,24 @@ public abstract class AbstractCodeMetricTests {
         props.setProperty("analysis.class", "net.ssehub.kernel_haven.analysis.ConfiguredPipelineAnalysis");
         
         props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey() + ".0", getMetric());
-        if (usePseudoVariabilityExtractor) {
+        if (useFullInputs) {
             props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
-                  + CodeFunctionFilter.class.getName() + "(cmComponent()), "
-                  + "vmComponent()"
-                  + ")");
+                    + CodeFunctionFilter.class.getName() + "(cmComponent()), "
+                    + "vmComponent(), "
+                    + "bmComponent(), "
+                    + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
+                    + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
+                    + ")");
+        } else if (usePseudoVariabilityExtractor) {
+            props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
+                    + CodeFunctionFilter.class.getName() + "(cmComponent()), "
+                    + "vmComponent()"
+                    + ")");
         } else {
             props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
                     + CodeFunctionFilter.class.getName() + "(cmComponent())"
                     + ")");
         }
-        
-        // CodeMetricsRunner with every parameter possible:
-//        props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
-//                + CodeFunctionFilter.class.getName() + "(cmComponent()), "
-//                + "vmComponent(), "
-//                + "bmComponent(), "
-//                + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
-//                + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
-//                + ")");
         
         props.setProperty(MetricSettings.ALL_METRIC_VARIATIONS.getKey(), "false");
         props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey(), getMetric());
