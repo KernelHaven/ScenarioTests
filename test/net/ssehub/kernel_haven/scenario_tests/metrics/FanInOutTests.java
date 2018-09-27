@@ -5,20 +5,17 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut.FanType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
-import net.ssehub.kernel_haven.test_utils.RunOnlyOnWinOrLinux;
 
 /**
  * Tests metrics execution of Lines of Code metrics with srcML-Extractor.
  * @author El-Sharkawy
  *
  */
-@RunWith(value = RunOnlyOnWinOrLinux.class)
 public class FanInOutTests extends AbstractCodeMetricTests {
 
     private static final Properties FAN_IN_SETUP = new Properties();
@@ -42,7 +39,7 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     @Test
     public void funcNoCallTestFanIn() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "NoVariabilityFunctionsCalls.c");
-        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_IN_SETUP);
+        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_IN_SETUP, false, false, true);
         
         assertMetricResult(result.get("funcNoCall"), 4, 0);
     }
@@ -53,7 +50,7 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     @Test
     public void funcNoCallTestFanOut() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "NoVariabilityFunctionsCalls.c");
-        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_OUT_SETUP);
+        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_OUT_SETUP, false, false, true);
         
         assertMetricResult(result.get("funcNoCall"), 4, 0);
     }
@@ -64,7 +61,7 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     @Test
     public void funcCallsOneTestFanIn() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "NoVariabilityFunctionsCalls.c");
-        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_IN_SETUP);
+        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_IN_SETUP, false, false, true);
         
         assertMetricResult(result.get("funcCallsOne"), 9, 0);
     }
@@ -75,7 +72,7 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     @Test
     public void funcCallsOneTestFanOut() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "NoVariabilityFunctionsCalls.c");
-        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_OUT_SETUP);
+        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_OUT_SETUP, false, false, true);
         
         assertMetricResult(result.get("funcCallsOne"), 9, 1);
     }
@@ -86,7 +83,7 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     @Test
     public void funcCalledByOneTestFanIn() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "NoVariabilityFunctionsCalls.c");
-        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_IN_SETUP);
+        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_IN_SETUP, false, false, true);
         
         assertMetricResult(result.get("funcCalledByOne"), 13, 1);
     }
@@ -97,7 +94,7 @@ public class FanInOutTests extends AbstractCodeMetricTests {
     @Test
     public void funcCalledByOneTestFanOut() {
         File testfile = new File(AbstractCodeMetricTests.TESTDATA, "NoVariabilityFunctionsCalls.c");
-        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_OUT_SETUP);
+        Map<String, MetricResult> result = runMetricAsMap(testfile, FAN_OUT_SETUP, false, false, true);
         
         assertMetricResult(result.get("funcCalledByOne"), 13, 0);
     }

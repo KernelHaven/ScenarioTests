@@ -243,7 +243,24 @@ public abstract class AbstractCodeMetricTests {
      * @return The result of the metric execution as a map (function, result)
      */
     protected Map<String, MetricResult> runMetricAsMap(File file, Properties properties) {
-        List<MetricResult> resultList = runMetric(file, properties);
+        return runMetricAsMap(file, properties, false, false, false);
+    }
+    
+    /**
+     * Runs the specified metric of {@link #getMetric()} on the specified file.
+     * @param file The model file to parse (its folder will be treated as source_tree root).
+     * @param properties Optional parameters (e.g., configuration parameters for the used metric).
+     * @param emptyResultExpected Specifies whether no result is expected (i.e., no function is contained in file)
+     * @param usePseudoVariabilityExtractor If <tt>true</tt> the {@link PseudoVariabilityExtractor} is used
+     *     (but not configured).
+     * @param useFullInputs Whether to create a {@link CodeMetricsRunner} with all inputs available.
+     * @return The result of the metric execution as a map (function, result)
+     */
+    protected Map<String, MetricResult> runMetricAsMap(File file, Properties properties, boolean emptyResultExpected,
+        boolean usePseudoVariabilityExtractor, boolean useFullInputs) {
+        
+        List<MetricResult> resultList = runMetric(file, properties,
+            emptyResultExpected, usePseudoVariabilityExtractor, useFullInputs);
         Map<String, MetricResult> resultMap = new HashMap<>();
         for (int i = 0; i < resultList.size(); i++) {
             resultMap.put(resultList.get(i).getContext(), resultList.get(i));
