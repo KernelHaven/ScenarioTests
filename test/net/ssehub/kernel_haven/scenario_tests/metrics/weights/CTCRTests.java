@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -117,8 +118,12 @@ public class CTCRTests extends AbstractParameterizedTests {
 
     @Override
     protected List<MetricResult> runMetric(File file, Properties properties) {
-        
         return runMetric(file, properties, false, true, true);
+    }
+    
+    @Override
+    protected Map<String, MetricResult> runMetricAsMap(File file, Properties properties) {
+        return super.runMetricAsMap(file, properties, false, true, true);
     }
     
     @Override
