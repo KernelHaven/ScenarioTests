@@ -22,8 +22,6 @@ import net.ssehub.kernel_haven.config.Configuration;
 import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
-import net.ssehub.kernel_haven.metric_haven.filter_components.FunctionMapCreator;
-import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
 import net.ssehub.kernel_haven.metric_haven.metric_components.CodeMetricsRunner;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.metric_haven.metric_components.weights.WeigthsCache;
@@ -143,13 +141,26 @@ public abstract class AbstractCodeMetricTests {
         props.setProperty("analysis.class", "net.ssehub.kernel_haven.analysis.ConfiguredPipelineAnalysis");
         
         props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey() + ".0", getMetric());
-        props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
-                + CodeFunctionFilter.class.getName() + "(cmComponent()), "
-                + "vmComponent(), "
-                + "bmComponent(), "
-                + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
-                + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
-                + ")");
+        if (usePseudoVariabilityExtractor) {
+            props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
+                  + CodeFunctionFilter.class.getName() + "(cmComponent()), "
+                  + "vmComponent()"
+                  + ")");
+        } else {
+            props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
+                    + CodeFunctionFilter.class.getName() + "(cmComponent())"
+                    + ")");
+        }
+        
+        // CodeMetricsRunner with every parameter possible:
+//        props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
+//                + CodeFunctionFilter.class.getName() + "(cmComponent()), "
+//                + "vmComponent(), "
+//                + "bmComponent(), "
+//                + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
+//                + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
+//                + ")");
+        
         props.setProperty(MetricSettings.ALL_METRIC_VARIATIONS.getKey(), "false");
         props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey(), getMetric());
         
@@ -157,14 +168,12 @@ public abstract class AbstractCodeMetricTests {
         if (null != properties) {
             props.putAll(properties);
         }
-        
         // Variability model extractor
         if (usePseudoVariabilityExtractor) {
             props.put("variability.extractor.class", PseudoVariabilityExtractor.class.getName());
         } else {
             props.setProperty("variability.extractor.class", EmptyVariabilityModelExtractor.class.getName());
         }
-        
         // Build model extractor
         props.setProperty("build.extractor.class", EmptyBuildModelExtractor.class.getName());
         
@@ -176,7 +185,6 @@ public abstract class AbstractCodeMetricTests {
         List<Object[]> result = MemoryTableWriter.getTable(resultName);
         Assert.assertNotNull("Result of " + resultName + " is null.", result);
         Assert.assertEquals("Result of " + resultName + " is empty.", emptyResultExpected, result.isEmpty());
-        
         List<MetricResult> resultList = convertToMetricResult(result);
         return resultList;
     }
