@@ -25,7 +25,9 @@ import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter
 import net.ssehub.kernel_haven.metric_haven.filter_components.FunctionMapCreator;
 import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
 import net.ssehub.kernel_haven.metric_haven.metric_components.CodeMetricsRunner;
+import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 import net.ssehub.kernel_haven.metric_haven.metric_components.weights.WeigthsCache;
+import net.ssehub.kernel_haven.metric_haven.multi_results.MultiMetricResult;
 import net.ssehub.kernel_haven.scenario_tests.AllTests;
 import net.ssehub.kernel_haven.srcml.SrcMLExtractor;
 import net.ssehub.kernel_haven.test_utils.MemoryTableCollection;
@@ -148,6 +150,8 @@ public abstract class AbstractCodeMetricTests {
                 + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
                 + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
                 + ")");
+        props.setProperty(MetricSettings.ALL_METRIC_VARIATIONS.getKey(), "false");
+        props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey(), getMetric());
         
         // Additional settings
         if (null != properties) {
@@ -173,9 +177,29 @@ public abstract class AbstractCodeMetricTests {
         Assert.assertNotNull("Result of " + resultName + " is null.", result);
         Assert.assertEquals("Result of " + resultName + " is empty.", emptyResultExpected, result.isEmpty());
         
+        List<MetricResult> resultList = convertToMetricResult(result);
+        return resultList;
+    }
+
+    /**
+     * Reads the metric results and converts them into a {@link MetricResult}.
+     * @param result The results of the metric execution (after last great refactoring, all metrics should
+     *     return {@link MultiMetricResult}s).
+     * @return The converted results.
+     */
+    private List<MetricResult> convertToMetricResult(List<Object[]> result) {
         List<MetricResult> resultList = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
-            resultList.add((MetricResult) result.get(i)[0]);
+            MultiMetricResult multiResult = (MultiMetricResult) result.get(i)[0];
+            File measuredFile = new File(multiResult.getMeasuredItem().getMainFile());
+            File includeFile = null;
+            if (null != multiResult.getMeasuredItem().getIncludedFile()) {
+                includeFile = new File(multiResult.getMeasuredItem().getIncludedFile());
+            }
+            int lineNo = multiResult.getMeasuredItem().getLineNo();
+            String function = multiResult.getMeasuredItem().getElement();
+            double value = multiResult.getValues()[0];
+            resultList.add(new MetricResult(measuredFile, includeFile, lineNo, function, value));
         }
         return resultList;
     }
