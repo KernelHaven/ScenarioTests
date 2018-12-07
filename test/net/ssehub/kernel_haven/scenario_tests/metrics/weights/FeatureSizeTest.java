@@ -95,8 +95,8 @@ public class FeatureSizeTest extends AbstractParameterizedTests {
             {"FeatureSizes.c", "complex", 29, 4, false},
             {"FeatureSizes.c", "variableInTwoFunctions1", 38, 10, true},
             {"FeatureSizes.c", "variableInTwoFunctions1", 38, 17, false},
-            {"FeatureSizes.c", "variableInTwoFunctions2", 48, 6, true},
-            {"FeatureSizes.c", "variableInTwoFunctions2", 48, 10, false}
+            {"FeatureSizes.c", "variableInTwoFunctions2", 48, 10, true},
+            {"FeatureSizes.c", "variableInTwoFunctions2", 48, 17, false}
             
             
             
