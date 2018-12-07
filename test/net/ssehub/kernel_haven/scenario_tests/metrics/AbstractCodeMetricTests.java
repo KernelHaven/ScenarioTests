@@ -23,6 +23,7 @@ import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.filter_components.CodeFunctionFilter;
 import net.ssehub.kernel_haven.metric_haven.filter_components.FunctionMapCreator;
+import net.ssehub.kernel_haven.metric_haven.filter_components.feature_size.FeatureSizeEstimator;
 import net.ssehub.kernel_haven.metric_haven.filter_components.scattering_degree.VariabilityCounter;
 import net.ssehub.kernel_haven.metric_haven.metric_components.CodeMetricsRunner;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
@@ -147,12 +148,13 @@ public abstract class AbstractCodeMetricTests {
         props.setProperty(CodeMetricsRunner.METRICS_SETTING.getKey() + ".0", getMetric());
         if (useFullInputs) {
             props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
-                    + CodeFunctionFilter.class.getName() + "(cmComponent()), "
-                    + "vmComponent(), "
-                    + "bmComponent(), "
-                    + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
-                    + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent()))"
-                    + ")");
+                + CodeFunctionFilter.class.getName() + "(cmComponent()), "
+                + "vmComponent(), "
+                + "bmComponent(), "
+                + VariabilityCounter.class.getName() + "(vmComponent(), cmComponent()), "
+                + FunctionMapCreator.class.getName() + "(" + CodeFunctionFilter.class.getName() + "(cmComponent())),"
+                + FeatureSizeEstimator.class.getName() + "(vmComponent(), cmComponent(), bmComponent())"
+                + ")");
         } else if (usePseudoVariabilityExtractor) {
             props.setProperty("analysis.pipeline", CodeMetricsRunner.class.getName() + "("
                     + CodeFunctionFilter.class.getName() + "(cmComponent()), "
