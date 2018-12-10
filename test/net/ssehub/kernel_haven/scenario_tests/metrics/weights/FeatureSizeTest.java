@@ -63,11 +63,16 @@ public class FeatureSizeTest extends AbstractParameterizedTests {
         VariabilityVariable varD = new VariabilityVariable("FOURTH_VAR", "bool");
         VariabilityVariable varE = new VariabilityVariable("FITH_VAR", "bool");
         VariabilityVariable varF = new VariabilityVariable("SIXTH_VAR", "bool");
-        VariabilityVariable varg = new VariabilityVariable("FOO", "bool");
-        VariabilityVariable varh = new VariabilityVariable("BAR", "bool");
+        VariabilityVariable varG = new VariabilityVariable("FOO", "bool");
+        VariabilityVariable varH = new VariabilityVariable("BAR", "bool");
+        VariabilityVariable varI = new VariabilityVariable("ANOTHER_VAR", "bool");
+        VariabilityVariable varNestedA = new VariabilityVariable("VAR_A", "bool");
+        VariabilityVariable varNestedB = new VariabilityVariable("VAR_B", "bool");
+        VariabilityVariable varNestedC = new VariabilityVariable("VAR_C", "bool");
+        VariabilityVariable varNestedD = new VariabilityVariable("VAR_D", "bool");
         
         PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB, varC, varD, varE,
-            varF, varg, varh);
+            varF, varG, varH, varI, varNestedA, varNestedB, varNestedC, varNestedD);
     }
     
     @Override
@@ -93,19 +98,12 @@ public class FeatureSizeTest extends AbstractParameterizedTests {
             {"FeatureSizes.c", "twoVariables", 22, 4, false},
             {"FeatureSizes.c", "complex", 29, 3, true},
             {"FeatureSizes.c", "complex", 29, 4, false},
-            {"FeatureSizes.c", "variableInTwoFunctions1", 38, 10, true},
-            {"FeatureSizes.c", "variableInTwoFunctions1", 38, 17, false},
-            {"FeatureSizes.c", "variableInTwoFunctions2", 48, 10, true},
-            {"FeatureSizes.c", "variableInTwoFunctions2", 48, 17, false}
-            
-            
-            
-            
-//            {"VariabilityFunctions.c", "funcVarNesting", 21, 3, "tristate", "bool"},
-//            {"VariabilityFunctions.c", "funcVarNesting", 21, 3, "bool", "tristate"},
-//            {"VariabilityFunctions.c", "funcVarNesting", 21, 4, "tristate", "tristate"},
-//            {"VariabilityFunctions.c", "funcVarNesting", 21, 1, null, "bool"},
-//            {"VariabilityFunctions.c", "funcVarNesting", 21, 1, "doesnt_exist", "bool"},
+            {"FeatureSizes.c", "variableInTwoFunctions1", 38, 7, true},
+            {"FeatureSizes.c", "variableInTwoFunctions1", 38, 18, false},
+            {"FeatureSizes.c", "variableInTwoFunctions2", 50, 10, true},
+            {"FeatureSizes.c", "variableInTwoFunctions2", 50, 21, false},
+            {"FeatureSizes.c", "nestedFunction", 65, 12, true},
+            {"FeatureSizes.c", "nestedFunction", 65, 16, false},
         });
     }
     
