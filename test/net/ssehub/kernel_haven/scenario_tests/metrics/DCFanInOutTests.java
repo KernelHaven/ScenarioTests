@@ -66,12 +66,16 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             // Degree Centrality In
-            {"DCFanInOut.c", "callingFunction", 2, 0, DC_IN_SETUP, "DC-In"}, // Never called -> Fan-In = 0
-            {"DCFanInOut.c", "calledFunction", 10, 3, DC_IN_SETUP, "DC-In"}, // B, C, + 1 -> Fan-In = 3
+            {"DCFanInOut.c", "callingFunction", 3, 0, DC_IN_SETUP, "DC-In"}, // Never called -> Fan-In = 0
+            {"DCFanInOut.c", "calledFunction", 11, 3, DC_IN_SETUP, "DC-In"}, // B, C, + 1 -> Fan-In = 3
+            {"DCFanInOut.c", "callingFunction2", 18, 0, DC_IN_SETUP, "DC-In"}, // Never called -> Fan-In = 0
+            {"DCFanInOut.c", "calledFunction2", 27, 4, DC_IN_SETUP, "DC-In"}, // !F, G, H + 1 -> Fan-In = 4
             
             // Degree Centrality Out
-            {"DCFanInOut.c", "callingFunction", 2, 3, DC_OUT_SETUP, "DC-Out"}, // B, C, + 1 -> Fan-Out = 3
-            {"DCFanInOut.c", "calledFunction", 10, 0, DC_OUT_SETUP, "DC-Out"}, // No calls -> Fan-Out = 0
+            {"DCFanInOut.c", "callingFunction", 3, 3, DC_OUT_SETUP, "DC-Out"}, // B, C, + 1 -> Fan-Out = 3
+            {"DCFanInOut.c", "calledFunction", 11, 0, DC_OUT_SETUP, "DC-Out"}, // No calls -> Fan-Out = 0
+            {"DCFanInOut.c", "callingFunction2", 18, 4, DC_OUT_SETUP, "DC-Out"}, // !F, G, H + 1 -> Fan-Out = 4
+            {"DCFanInOut.c", "calledFunction2", 27, 0, DC_OUT_SETUP, "DC-Out"}, // Never called -> Fan-Out = 0
         });
     }
     
@@ -81,12 +85,14 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
     @BeforeClass
     public static void setup() {
         // Configuration of variability model
-        VariabilityVariable varA = new VariabilityVariable("A", "bool");
-        VariabilityVariable varB = new VariabilityVariable("B", "bool");
-        VariabilityVariable varC = new VariabilityVariable("C", "bool");
-        VariabilityVariable varD = new VariabilityVariable("D", "bool");
-        
-        PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB, varC, varD);
+        PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"),
+            new VariabilityVariable("A", "bool"),
+            new VariabilityVariable("B", "bool"),
+            new VariabilityVariable("C", "bool"),
+            new VariabilityVariable("E", "bool"),
+            new VariabilityVariable("F", "bool"),
+            new VariabilityVariable("G", "bool"),
+            new VariabilityVariable("H", "bool"));
     }
     
     @Override
