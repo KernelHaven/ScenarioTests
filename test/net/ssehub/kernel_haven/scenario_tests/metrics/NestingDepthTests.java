@@ -46,7 +46,7 @@ public class NestingDepthTests extends AbstractParameterizedTests {
      * @param expectedLineNo The expected starting line number of the function
      * @param expectedResultValue The expected value of the metric to compute.
      * @param config The configuration (variation through parameters) to use.
-     * @param name The name f the test (will be ignored)
+     * @param name The name for the test (will be ignored, only used for JUnit)
      */
     // CHECKSTYLE:OFF
     public NestingDepthTests(String fileName, String testedFunctionName, int expectedLineNo,

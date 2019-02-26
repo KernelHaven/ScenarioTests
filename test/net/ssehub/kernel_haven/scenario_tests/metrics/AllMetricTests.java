@@ -30,7 +30,11 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
     VariablesPerFunctionExternalTests.class,
     VariablesPerFunctionInternalTests.class,
     
+    // Fan-In/Out
     FanInOutTests.class,
+    DCFanInOutTests.class,
+    
+    
     RobostnessTest.class,
     
     AllWeightsTests.class,

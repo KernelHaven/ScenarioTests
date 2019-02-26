@@ -12,7 +12,7 @@ import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut.FanType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 
 /**
- * Tests metrics execution of Lines of Code metrics with srcML-Extractor.
+ * Tests metrics execution of Fan-In/Out metrics with srcML-Extractor.
  * @author El-Sharkawy
  *
  */
