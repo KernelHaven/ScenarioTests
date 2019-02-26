@@ -66,12 +66,12 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             // Degree Centrality In
-//            {"DCFanInOut.c", "callingFunction", 2, 0, DC_IN_SETUP, "DC-In"}, // Never called -> Fan-In = 0
+            {"DCFanInOut.c", "callingFunction", 2, 0, DC_IN_SETUP, "DC-In"}, // Never called -> Fan-In = 0
             {"DCFanInOut.c", "calledFunction", 10, 3, DC_IN_SETUP, "DC-In"}, // B, C, + 1 -> Fan-In = 3
             
             // Degree Centrality Out
-//            {"DCFanInOut.c", "callingFunction", 2, 3, DC_OUT_SETUP, "DC-Out"}, // B, C, + 1 -> Fan-Out = 3
-//            {"DCFanInOut.c", "calledFunction", 10, 0, DC_OUT_SETUP, "DC-Out"}, // No calls -> Fan-Out = 0
+            {"DCFanInOut.c", "callingFunction", 2, 3, DC_OUT_SETUP, "DC-Out"}, // B, C, + 1 -> Fan-Out = 3
+            {"DCFanInOut.c", "calledFunction", 10, 0, DC_OUT_SETUP, "DC-Out"}, // No calls -> Fan-Out = 0
         });
     }
     
