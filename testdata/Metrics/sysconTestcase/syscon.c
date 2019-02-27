@@ -66,3 +66,14 @@ err_map:
 	kfree(syscon);
 	return ERR_PTR(ret);
 }
+
+// Empty dummy functions to test classical Fan-Out
+void of_device_is_compatible() {}
+void kzalloc() {}
+void of_iomap() {}
+void of_property_read_bool() {}
+void regmap_init_mmio() {}
+void spin_lock() {}
+void list_add_tail() {}
+void spin_unlock() {}
+void kfree() {}

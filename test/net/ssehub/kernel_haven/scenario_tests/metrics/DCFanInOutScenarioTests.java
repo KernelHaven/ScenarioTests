@@ -30,18 +30,23 @@ public class DCFanInOutScenarioTests extends AbstractParameterizedTests {
 
     private static final Properties DC_IN_SETUP = new Properties();
     private static final Properties DC_OUT_SETUP = new Properties();
+    private static final Properties FAN_OUT_SETUP = new Properties();
     
     static {
         DC_IN_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
-            FanType.DEGREE_CENTRALITY_IN_LOCALLY.name());
+            FanType.DEGREE_CENTRALITY_IN_GLOBALLY.name());
         DC_OUT_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
-            FanType.DEGREE_CENTRALITY_OUT_LOCALLY.name());
+            FanType.DEGREE_CENTRALITY_OUT_GLOBALLY.name());
+        FAN_OUT_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
+                FanType.CLASSICAL_FAN_OUT_LOCALLY.name());
         
         File folder = new File(AbstractCodeMetricTests.TESTDATA, "sysconTestcase");
         StringJoiner sj = new StringJoiner(",");
         for (String fileName : folder.list()) {
             sj.add(fileName);
         }
+        
+        // Add all files to GLOBAL settings
         DC_IN_SETUP.setProperty("code.extractor.files", sj.toString());
         DC_OUT_SETUP.setProperty("code.extractor.files", sj.toString());
     }
@@ -74,9 +79,16 @@ public class DCFanInOutScenarioTests extends AbstractParameterizedTests {
     @Parameters(name = "{5}: {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
-         // Degree Centrality Out
-            {"syscon.c", "of_syscon_register", 20, 2, DC_OUT_SETUP, "DC-Out"}, // Calls guarded iounmap -> DC-Out = 2
-            {"io.h", "iounmap", 830, 0, DC_OUT_SETUP, "DC-Out"},               // Empty function -> Fan-Out = 0
+//            // Classical Fan-Out
+            {"syscon.c", "of_syscon_register", 20, 10, FAN_OUT_SETUP, "Fan-Out"}, // 11 calls to 10 functions
+//            
+//            // Degree Centrality In
+            {"syscon.c", "of_syscon_register", 20, 0, DC_IN_SETUP, "DC-In"},     // Not called -> Fan-In = 0
+            {"io.h", "iounmap", 830, 2, DC_IN_SETUP, "DC-In"},                   // Guarded call function -> Fan-In = 2
+            
+//            // Degree Centrality Out
+            {"syscon.c", "of_syscon_register", 20, 2, DC_OUT_SETUP, "DC-Out"},   // Calls guarded iounmap -> DC-Out = 2
+            {"io.h", "iounmap", 830, 0, DC_OUT_SETUP, "DC-Out"},                 // Empty function -> Fan-Out = 0
         });
     }
     
