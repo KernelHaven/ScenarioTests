@@ -33,7 +33,7 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
     // Fan-In/Out
     FanInOutTests.class,
     DCFanInOutTests.class,
-    
+    DCFanInOutScenarioTests.class,
     
     RobostnessTest.class,
     
