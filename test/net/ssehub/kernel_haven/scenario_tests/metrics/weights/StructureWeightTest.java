@@ -44,7 +44,7 @@ import net.ssehub.kernel_haven.variability_model.VariabilityModelDescriptor.Attr
 import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
 
 /**
- * Tests the {@link StructuralWeight} weight using the {@link VariablesPerFunctionMetric} (internal).
+ * Tests the {@link StructuralWeight} weight using the {@link VariablesPerFunction} metric (internal).
  *
  * @author Adam
  */
@@ -75,6 +75,10 @@ public class StructureWeightTest extends AbstractParameterizedTests {
      * @param expectedLineNo The expected starting line number of the function
      * @param expectedResultValue The expected value of the metric to compute.
      * @param type The type of {@link StructuralWeight} to use.
+     * @param aParent Whether variable A should be a parent.
+     * @param aChildren The number of children that A has.
+     * @param bParent Whether variable B should be a parent.
+     * @param bChildren The number of children that B has.
      */
     // CHECKSTYLE:OFF // too many arguments
     public StructureWeightTest(String fileName, String testedFunctionName, int expectedLineNo,

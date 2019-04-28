@@ -42,7 +42,7 @@ import net.ssehub.kernel_haven.variability_model.VariabilityModelDescriptor.Attr
 import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
 
 /**
- * Tests the {@link HierarchyType} weight using the {@link VariablesPerFunctionMetric} (internal).
+ * Tests the {@link HierarchyType} weight using the {@link VariablesPerFunction} metric (internal).
  *
  * @author Adam
  */

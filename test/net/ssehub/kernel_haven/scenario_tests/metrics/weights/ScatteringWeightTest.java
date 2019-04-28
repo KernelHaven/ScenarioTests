@@ -38,7 +38,7 @@ import net.ssehub.kernel_haven.test_utils.PseudoVariabilityExtractor;
 import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
 
 /**
- * Tests the {@link VariabilityTypeMeasureType} weight using the {@link VariablesPerFunctionMetric} (internal).
+ * Tests the {@link VariabilityTypeMeasureType} weight using the {@link VariablesPerFunction} metric (internal).
  *
  * @author Adam
  */
@@ -60,9 +60,10 @@ public class ScatteringWeightTest extends AbstractParameterizedTests {
      * Retrieves values from {@link #getParameters()}, creates, and executes the test.
      * 
      * @param fileName The name of the file to be tested.
-     * @param testedFunctionName The function to test
-     * @param expectedLineNo The expected starting line number of the function
+     * @param testedFunctionName The function to test.
+     * @param expectedLineNo The expected starting line number of the function.
      * @param expectedResultValue The expected value of the metric to compute.
+     * @param type The type of SD metric to run.
      */
     // CHECKSTYLE:OFF // too many arguments
     public ScatteringWeightTest(String fileName, String testedFunctionName, int expectedLineNo,

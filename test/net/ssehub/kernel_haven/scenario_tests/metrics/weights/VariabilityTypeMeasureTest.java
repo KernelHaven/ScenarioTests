@@ -37,7 +37,7 @@ import net.ssehub.kernel_haven.test_utils.PseudoVariabilityExtractor;
 import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
 
 /**
- * Tests the {@link VariabilityTypeMeasureType} weight using the {@link VariablesPerFunctionMetric} (internal).
+ * Tests the {@link VariabilityTypeMeasureType} weight using the {@link VariablesPerFunction} metric (internal).
  *
  * @author Adam
  */

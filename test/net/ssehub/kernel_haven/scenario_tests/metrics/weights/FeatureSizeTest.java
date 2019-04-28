@@ -60,9 +60,10 @@ public class FeatureSizeTest extends AbstractParameterizedTests {
      * Retrieves values from {@link #getParameters()}, creates, and executes the test.
      * 
      * @param fileName The name of the file to be tested.
-     * @param testedFunctionName The function to test
-     * @param expectedLineNo The expected starting line number of the function
+     * @param testedFunctionName The function to test.
+     * @param expectedLineNo The expected starting line number of the function.
      * @param expectedResultValue The expected value of the metric to compute.
+     * @param countPositivesOnly Only count positive values.
      */
     // CHECKSTYLE:OFF // too many arguments
     public FeatureSizeTest(String fileName, String testedFunctionName, int expectedLineNo,
