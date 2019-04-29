@@ -24,13 +24,13 @@
 
 	<target name="dependencies.download">
 		<get src="${infrastructure.fortesting.url}" dest="${dependencies.dir}" />
-		<get src="${plugins.KconfigReaderExtractor.url}" dest="${dependencies.dir}/kconfigreaderextractor.jar" />
-		<get src="${plugins.KbuildMinerExtractor.url}" dest="${dependencies.dir}/kbuildminerextractor.jar" />
-		<get src="${plugins.UndertakerExtractor.url}" dest="${dependencies.dir}/undertakerextractor.jar" />
-		<get src="${plugins.UnDeadAnalyzer.url}" dest="${dependencies.dir}/undeadanalyzer.jar" />
-		<get src="${plugins.CnfUtils.url}" dest="${dependencies.dir}/cnfutils.jar" />
-		<get src="${plugins.MetricHaven.url}" dest="${dependencies.dir}/metrichaven.jar" />
-		<get src="${plugins.srcMLExtractor.url}" dest="${dependencies.dir}/srcml.jar" />
+		<get src="${plugins.KconfigReaderExtractor.url}" dest="${dependencies.dir}" />
+		<get src="${plugins.KbuildMinerExtractor.url}" dest="${dependencies.dir}" />
+		<get src="${plugins.UndertakerExtractor.url}" dest="${dependencies.dir}" />
+		<get src="${plugins.UnDeadAnalyzer.url}" dest="${dependencies.dir}" />
+		<get src="${plugins.CnfUtils.url}" dest="${dependencies.dir}" />
+		<get src="${plugins.MetricHaven.url}" dest="${dependencies.dir}" />
+		<get src="${plugins.srcMLExtractor.url}" dest="${dependencies.dir}" />
 	</target>
 
 </project>
