@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- author: Sascha El-Sharkawy, Adam -->
+<!-- Author: Adam, Sascha El-Sharkawy -->
 <project name="ScenarioTests" default="jenkins" basedir=".">
 	<description>Full scenario tests for KernelHaven</description>
 
