@@ -24,8 +24,10 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.io.FileInputStream;
 
-import net.ssehub.kernel_haven.AbstractScenarioTest;
+import org.junit.Test;
+
 import net.ssehub.kernel_haven.logic_utils.FormulaEqualityChecker;
+import net.ssehub.kernel_haven.test_utils.AbstractScenarioTest;
 import net.ssehub.kernel_haven.util.io.csv.CsvReader;
 import net.ssehub.kernel_haven.util.logic.Formula;
 import net.ssehub.kernel_haven.util.logic.parser.CStyleBooleanGrammar;
@@ -84,6 +86,12 @@ public class SimpleFeatureEffects extends AbstractScenarioTest {
             assertThat(full.length, is(5));
         }
         
+    }
+    
+    @Test
+    @Override
+    public void run() throws Exception {
+        super.run();
     }
 
 }

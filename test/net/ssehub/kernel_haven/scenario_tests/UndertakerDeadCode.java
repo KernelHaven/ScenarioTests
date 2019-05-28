@@ -24,9 +24,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import net.ssehub.kernel_haven.AbstractScenarioTest;
+import net.ssehub.kernel_haven.test_utils.AbstractScenarioTest;
 import net.ssehub.kernel_haven.test_utils.RunOnlyOnLinux;
 import net.ssehub.kernel_haven.util.io.csv.CsvReader;
 
@@ -73,6 +74,12 @@ public class UndertakerDeadCode extends AbstractScenarioTest {
             assertThat(full.length, is(5));
         }
         
+    }
+    
+    @Test
+    @Override
+    public void run() throws Exception {
+        super.run();
     }
 
 }
