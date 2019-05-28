@@ -87,10 +87,14 @@ public class SimpleFeatureEffects extends AbstractScenarioTest {
         }
         
     }
-    
+
+    /**
+     * Executes this test.
+     * 
+     * @throws Exception unwanted.
+     */
     @Test
-    @Override
-    public void run() throws Exception {
+    public void executeTest() throws Exception {
         super.run();
     }
 
