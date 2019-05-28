@@ -22,16 +22,6 @@
 		<!--antcall target="KH_Common.test.report" /-->
 	</target>
 
-	<classpathentry combineaccessrules="false" kind="src" path="/CodeBlockExtractor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/CnfUtils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/FeatureEffectAnalysis"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/KbuildMinerExtractor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/KconfigReaderExtractor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MetricHaven"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/srcMLExtractor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/UnDeadAnalyzer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/UndertakerExtractor"/>
-	
 	<target name="dependencies.download">
 		<get src="${infrastructure.fortesting.url}" dest="${dependencies.dir}" />
 		<get src="${plugins.CodeBlockExtractor.url}" dest="${dependencies.dir}" />
