@@ -3,6 +3,9 @@
 	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/KernelHaven"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CodeBlockExtractor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CnfUtils"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/FeatureEffectAnalysis"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/KbuildMinerExtractor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/KconfigReaderExtractor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MetricHaven"/>

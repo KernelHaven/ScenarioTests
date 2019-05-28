@@ -32,6 +32,7 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.AllMetricTests;
 @SuiteClasses({
     AllMetricTests.class,
     
+    SimpleFeatureEffects.class,
     UndertakerDeadCode.class,
     })
 public class AllTests {
