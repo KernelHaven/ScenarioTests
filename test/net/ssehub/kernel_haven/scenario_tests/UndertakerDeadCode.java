@@ -76,9 +76,16 @@ public class UndertakerDeadCode extends AbstractScenarioTest {
         
     }
     
+    /**
+     * Executes this test.
+     * 
+     * @throws Exception unwanted.
+     */
     @Test
-    @Override
-    public void run() throws Exception {
+    public void executeTest()
+        // CHECKSTYLE:OFF // we allow throws exception here
+            throws Exception {
+        // CHECKSTYLE:ON
         super.run();
     }
 

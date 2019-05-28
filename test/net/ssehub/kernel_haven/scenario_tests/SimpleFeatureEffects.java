@@ -94,7 +94,10 @@ public class SimpleFeatureEffects extends AbstractScenarioTest {
      * @throws Exception unwanted.
      */
     @Test
-    public void executeTest() throws Exception {
+    public void executeTest()
+        // CHECKSTYLE:OFF // we allow throws exception here
+            throws Exception {
+        // CHECKSTYLE:ON
         super.run();
     }
 
