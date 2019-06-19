@@ -92,11 +92,11 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
             {"DCFanInOut.c", "callingFunction2", 18, 4, DC_OUT_SETUP, "DC-Out"}, // !F, G, H + 1 -> Fan-Out = 4
             {"DCFanInOut.c", "calledFunction2", 27, 0, DC_OUT_SETUP, "DC-Out"}, // Never called -> Fan-Out = 0
             
-            // test alternative function implementation stuff
+            // Tests alternative function implementation stuff
             {"FanOutAlternativeImplementations1.c", "func2", 12, 4, DC_OUT_SETUP, "DC-Out (ifdef impls)"},
             {"FanOutAlternativeImplementations2.c", "func2", 10, 4, DC_OUT_SETUP, "DC-Out (ifdef calls)"},
             
-            // TODO: should this one be 2 as well?
+            // Tests a function implementation together with an empty function stub (dummy function)
             {"FanOutDummyImplementations1.c", "func2", 11, 4, DC_OUT_SETUP, "DC-Out (dummy ifdef impls)"},
             {"FanOutDummyImplementations2.c", "func2", 7, 2, DC_OUT_SETUP, "DC-Out (dummy ifdef calls)"},
         });
