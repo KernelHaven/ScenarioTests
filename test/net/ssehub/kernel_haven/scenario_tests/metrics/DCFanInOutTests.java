@@ -44,12 +44,21 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
 
     private static final Properties DC_IN_SETUP = new Properties();
     private static final Properties DC_OUT_SETUP = new Properties();
+    private static final Properties DC_OUT_NO_STUB_SETUP = new Properties();
+    private static final Properties DC_OUT_NO_EXTERNAL_VPS_SETUP = new Properties();
+    private static final Properties DC_OUT_NO_STUB_NO_EXTERNAL_VPS_SETUP = new Properties();
     
     static {
         DC_IN_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
             FanType.DEGREE_CENTRALITY_IN_LOCALLY.name());
         DC_OUT_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
             FanType.DEGREE_CENTRALITY_OUT_LOCALLY.name());
+        DC_OUT_NO_STUB_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
+            FanType.DEGREE_CENTRALITY_OUT_NO_STUB_LOCALLY.name());
+        DC_OUT_NO_EXTERNAL_VPS_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
+            FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_LOCALLY.name());
+        DC_OUT_NO_STUB_NO_EXTERNAL_VPS_SETUP.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
+            FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_LOCALLY.name());
     }
     
     private Properties config;
@@ -92,6 +101,7 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
             {"DCFanInOut.c", "callingFunction2", 18, 4, DC_OUT_SETUP, "DC-Out"}, // !F, G, H + 1 -> Fan-Out = 4
             {"DCFanInOut.c", "calledFunction2", 27, 0, DC_OUT_SETUP, "DC-Out"}, // Never called -> Fan-Out = 0
             
+            // DC-OUT tests:
             // Tests alternative function implementation stuff
             {"FanOutAlternativeImplementations1.c", "func2", 12, 4, DC_OUT_SETUP, "DC-Out (ifdef impls)"},
             {"FanOutAlternativeImplementations2.c", "func2", 10, 4, DC_OUT_SETUP, "DC-Out (ifdef calls)"},
@@ -99,6 +109,37 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
             // Tests a function implementation together with an empty function stub (dummy function)
             {"FanOutDummyImplementations1.c", "func2", 11, 4, DC_OUT_SETUP, "DC-Out (dummy ifdef impls)"},
             {"FanOutDummyImplementations2.c", "func2", 7, 2, DC_OUT_SETUP, "DC-Out (dummy ifdef calls)"},
+            
+            // DC-OUT-NO_STUB tests:
+            // Tests alternative function implementation stuff
+            {"FanOutAlternativeImplementations1.c", "func2", 12, 4, DC_OUT_NO_STUB_SETUP, "No Stub (ifdef impls)"},
+            {"FanOutAlternativeImplementations2.c", "func2", 10, 4, DC_OUT_NO_STUB_SETUP, "No Stub (ifdef calls)"},
+            
+            // Tests a function implementation together with an empty function stub (dummy function)
+            {"FanOutDummyImplementations1.c", "func2", 11, 2, DC_OUT_NO_STUB_SETUP, "No Stub (dummy ifdef impls)"},
+            {"FanOutDummyImplementations2.c", "func2", 7, 2, DC_OUT_NO_STUB_SETUP, "No Stub (dummy ifdef calls)"},
+            
+            // DC-OUT-NO_EXTERNAL_VPS tests:
+            // Tests alternative function implementation stuff
+            {"FanOutAlternativeImplementations1.c", "func2", 12, 4, DC_OUT_NO_STUB_SETUP, "No ext VPs (ifdef impls)"},
+            {"FanOutAlternativeImplementations2.c", "func2", 10, 4, DC_OUT_NO_STUB_SETUP, "No ext VPs (ifdef calls)"},
+            
+            // Tests a function implementation together with an empty function stub (dummy function)
+            {"FanOutDummyImplementations1.c", "func2", 11, 2, DC_OUT_NO_STUB_SETUP, "No ext VPs (dummy ifdef impls)"},
+            {"FanOutDummyImplementations2.c", "func2", 7, 2, DC_OUT_NO_STUB_SETUP, "No ext VPs (dummy ifdef calls)"},
+            
+            // DC-OUT-NO_STUB-NO_EXTERNAL_VPS tests:
+            // Tests alternative function implementation stuff
+            {"FanOutAlternativeImplementations1.c", "func2", 12, 2, DC_OUT_NO_STUB_NO_EXTERNAL_VPS_SETUP,
+                "No Stub, No ext VPs (ifdef impls)"},
+            {"FanOutAlternativeImplementations2.c", "func2", 10, 4, DC_OUT_NO_STUB_NO_EXTERNAL_VPS_SETUP,
+                "No Stub, No ext VPs (ifdef calls)"},
+            
+            // Tests a function implementation together with an empty function stub (dummy function)
+            {"FanOutDummyImplementations1.c", "func2", 11, 1, DC_OUT_NO_STUB_NO_EXTERNAL_VPS_SETUP,
+                "No Stub, No ext VPs (dummy ifdef impls)"},
+            {"FanOutDummyImplementations2.c", "func2", 7, 2, DC_OUT_NO_STUB_NO_EXTERNAL_VPS_SETUP,
+                "No Stub, No ext VPs (dummy ifdef calls)"},
         });
     }
     

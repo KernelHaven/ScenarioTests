@@ -94,15 +94,15 @@ public class DCFanInOutScenarioTests extends AbstractParameterizedTests {
     @Parameters(name = "{5}: {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
-//            // Classical Fan-Out
+            // Classical Fan-Out
             {"syscon.c", "of_syscon_register", 20, 10, FAN_OUT_SETUP, "Fan-Out"}, // 11 calls to 10 functions
-//            
-//            // Degree Centrality In
+            
+            // Degree Centrality In
             {"syscon.c", "of_syscon_register", 20, 0, DC_IN_SETUP, "DC-In"},     // Not called -> Fan-In = 0
             {"io.h", "iounmap", 830, 2, DC_IN_SETUP, "DC-In"},                   // Guarded call function -> Fan-In = 2
             
-//            // Degree Centrality Out
-            {"syscon.c", "of_syscon_register", 20, 2, DC_OUT_SETUP, "DC-Out"},   // Calls guarded iounmap -> DC-Out = 2
+            // Degree Centrality Out
+            {"syscon.c", "of_syscon_register", 20, 12, DC_OUT_SETUP, "DC-Out"},  // Calls guarded iounmap -> DC-Out = 12
             {"io.h", "iounmap", 830, 0, DC_OUT_SETUP, "DC-Out"},                 // Empty function -> Fan-Out = 0
         });
     }
