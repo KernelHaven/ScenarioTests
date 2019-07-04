@@ -50,6 +50,9 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
     DCFanInOutTests.class,
     DCFanInOutScenarioTests.class,
     
+    // EigenVector Centrality
+    EigenVectorCentralityTests.class,
+    
     RobostnessTest.class,
     
     AllWeightsTests.class,
