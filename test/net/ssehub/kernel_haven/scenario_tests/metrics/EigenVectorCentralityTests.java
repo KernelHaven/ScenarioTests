@@ -40,10 +40,13 @@ import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSetti
 public class EigenVectorCentralityTests extends AbstractParameterizedTests {
 
     private static final Properties FAN_OUT = new Properties();
+    private static final Properties FAN_IN = new Properties();
     
     static {
         FAN_OUT.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
             FanType.CLASSICAL_FAN_OUT_LOCALLY.name());
+        FAN_IN.setProperty(MetricSettings.FAN_TYPE_SETTING.getKey(),
+            FanType.CLASSICAL_FAN_IN_LOCALLY.name());
     }
     
     private Properties config;
@@ -74,11 +77,27 @@ public class EigenVectorCentralityTests extends AbstractParameterizedTests {
     @Parameters(name = "{5}: {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
-            {"EigenVectorCentrality.c", "v1", 1, 8, FAN_OUT, "EV-OUT (classical)"}, 
-            {"EigenVectorCentrality.c", "v2", 7, 6, FAN_OUT, "EV-OUT (classical)"}, 
-            {"EigenVectorCentrality.c", "v3", 12, 8, FAN_OUT, "EV-OUT (classical)"}, 
-            {"EigenVectorCentrality.c", "v4", 18, 7, FAN_OUT, "EV-OUT (classical)"}, 
-            {"EigenVectorCentrality.c", "v5", 24, 3, FAN_OUT, "EV-OUT (classical)"}, 
+            // Based on Fan-Out
+            {"EigenVectorCentrality.c", "v1", 3, 8, FAN_OUT, "EV-OUT (classical)"}, 
+            {"EigenVectorCentrality.c", "v2", 9, 6, FAN_OUT, "EV-OUT (classical)"}, 
+            {"EigenVectorCentrality.c", "v3", 14, 8, FAN_OUT, "EV-OUT (classical)"}, 
+            {"EigenVectorCentrality.c", "v4", 20, 7, FAN_OUT, "EV-OUT (classical)"}, 
+            {"EigenVectorCentrality.c", "v5", 26, 3, FAN_OUT, "EV-OUT (classical)"}, 
+            {"EigenVectorCentrality.c", "v6", 30, 0, FAN_OUT, "EV-OUT (classical)"},
+            {"EigenVectorCentrality.c", "v7", 34, 3, FAN_OUT, "EV-OUT (classical)"},
+            {"EigenVectorCentrality.c", "v8", 38, 1, FAN_OUT, "EV-OUT (classical)"},
+            {"EigenVectorCentrality.c", "v9", 43, 1, FAN_OUT, "EV-OUT (classical)"},
+            
+            // Based on Fan-In
+            {"EigenVectorCentrality.c", "v1", 3, 8, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v2", 9, 6, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v3", 14, 8, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v4", 20, 7, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v5", 26, 3, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v6", 30, 0, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v7", 34, 1, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v8", 38, 3, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v9", 43, 3, FAN_IN, "EV-IN (classical)"}, 
         });
     }
     

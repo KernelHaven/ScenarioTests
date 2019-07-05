@@ -13,3 +13,17 @@ void funcCallsOne() {      // 0         1       1
 void funcCalledByOne() {  // 1          0       1
     ;
 }
+
+
+void v7() {
+    v7();
+}
+
+void v8() {
+    v7();
+    v8();
+}
+
+void v9() {
+    v7();
+}

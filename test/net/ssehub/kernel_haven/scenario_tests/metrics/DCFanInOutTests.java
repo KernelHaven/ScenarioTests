@@ -170,7 +170,7 @@ public class DCFanInOutTests extends AbstractParameterizedTests {
     }
     
     /**
-     * Executes the NDavg tests.
+     * Executes the tests.
      */
     @Test
     public void test() {
