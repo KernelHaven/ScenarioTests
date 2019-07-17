@@ -73,7 +73,7 @@ public class VariablesPerFunctionAllTests extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "funcHalfVar", 14, 1},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 2},
             {"VariabilityFunctions.c", "conditionalFunction1", 31, 2},
-            {"VariabilityFunctions.c", "conditionalFunction2", 38, 2}
+            {"VariabilityFunctions.c", "conditionalFunction2", 39, 2}
         });
     }
     

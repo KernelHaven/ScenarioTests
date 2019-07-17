@@ -33,6 +33,7 @@ void conditionalFunction1() {//                 1       1       1           1/1 
     ;
 #endif
 }
+#endif
 
 #ifdef A
 void conditionalFunction2() {//                 1       1       2           2/1         3       2       1       2
@@ -42,6 +43,7 @@ void conditionalFunction2() {//                 1       1       2           2/1 
 #endif
 #endif
 }
+#endif
 
 void funcCppElse() {        //          3/4     1       1      1           3/4         1       1       0       1
 #ifdef A

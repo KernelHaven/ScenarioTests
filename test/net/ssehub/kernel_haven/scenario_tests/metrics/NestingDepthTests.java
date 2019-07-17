@@ -103,8 +103,8 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "funcHalfVar", 14, 1, ND_AVG_SETUP, "NDavg"},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 1, ND_AVG_SETUP, "NDavg"},
             {"VariabilityFunctions.c", "conditionalFunction1", 31, 1, ND_AVG_SETUP, "NDavg"},
-            {"VariabilityFunctions.c", "conditionalFunction2", 38, 1, ND_AVG_SETUP, "NDavg"},
-            {"VariabilityFunctions.c", "funcCppElse", 46, 1, ND_AVG_SETUP, "NDavg"},
+            {"VariabilityFunctions.c", "conditionalFunction2", 39, 1, ND_AVG_SETUP, "NDavg"},
+            {"VariabilityFunctions.c", "funcCppElse", 48, 1, ND_AVG_SETUP, "NDavg"},
             
             // Classical ND max
             // Code without CPP
@@ -123,8 +123,8 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "funcHalfVar", 14, 1, ND_MAX_SETUP, "NDmax"},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 1, ND_MAX_SETUP, "NDmax"},
             {"VariabilityFunctions.c", "conditionalFunction1", 31, 1, ND_MAX_SETUP, "NDmax"},
-            {"VariabilityFunctions.c", "conditionalFunction2", 38, 1, ND_MAX_SETUP, "NDmax"},
-            {"VariabilityFunctions.c", "funcCppElse", 46, 1, ND_MAX_SETUP, "NDmax"},
+            {"VariabilityFunctions.c", "conditionalFunction2", 39, 1, ND_MAX_SETUP, "NDmax"},
+            {"VariabilityFunctions.c", "funcCppElse", 48, 1, ND_MAX_SETUP, "NDmax"},
             
             // VP ND avg
             {"VariabilityFunctions.c", "funcEmpty", 4, 0, VP_AVG_SETUP, "VP-ND_avg"},
@@ -132,8 +132,8 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "funcHalfVar", 14, 1.0 / 2, VP_AVG_SETUP, "VP-ND_avg"},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 2.0 / 2, VP_AVG_SETUP, "VP-ND_avg"},
             {"VariabilityFunctions.c", "conditionalFunction1", 31, 1.0 / 1, VP_AVG_SETUP, "VP-ND_avg"},
-            {"VariabilityFunctions.c", "conditionalFunction2", 38, 2.0 / 1, VP_AVG_SETUP, "VP-ND_avg"},
-            {"VariabilityFunctions.c", "funcCppElse", 46, 3.0 / 4.0, VP_AVG_SETUP, "VP-ND_avg"},
+            {"VariabilityFunctions.c", "conditionalFunction2", 39, 2.0 / 1, VP_AVG_SETUP, "VP-ND_avg"},
+            {"VariabilityFunctions.c", "funcCppElse", 48, 3.0 / 4.0, VP_AVG_SETUP, "VP-ND_avg"},
             
             // VP ND max
             {"VariabilityFunctions.c", "funcEmpty", 4, 0, VP_MAX_SETUP, "VP-ND_max"},
@@ -141,8 +141,8 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "funcHalfVar", 14, 1, VP_MAX_SETUP, "VP-ND_max"},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 2, VP_MAX_SETUP, "VP-ND_max"},
             {"VariabilityFunctions.c", "conditionalFunction1", 31, 1, VP_MAX_SETUP, "VP-ND_max"},
-            {"VariabilityFunctions.c", "conditionalFunction2", 38, 2, VP_MAX_SETUP, "VP-ND_max"},
-            {"VariabilityFunctions.c", "funcCppElse", 46, 1, VP_MAX_SETUP, "VP-ND_max"},
+            {"VariabilityFunctions.c", "conditionalFunction2", 39, 2, VP_MAX_SETUP, "VP-ND_max"},
+            {"VariabilityFunctions.c", "funcCppElse", 48, 1, VP_MAX_SETUP, "VP-ND_max"},
         });
     }
 
