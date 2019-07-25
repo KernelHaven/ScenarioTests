@@ -53,6 +53,9 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
     // EigenVector Centrality
     EigenVectorCentralityTests.class,
     
+    // UndisciplinedCPP
+    UndisciplinedPreprocessorUsageTests.class,
+    
     RobostnessTest.class,
     
     AllWeightsTests.class,
