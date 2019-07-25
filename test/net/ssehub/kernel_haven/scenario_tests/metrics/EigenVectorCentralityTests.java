@@ -87,6 +87,7 @@ public class EigenVectorCentralityTests extends AbstractParameterizedTests {
             {"EigenVectorCentrality.c", "v7", 34, 3, FAN_OUT, "EV-OUT (classical)"},
             {"EigenVectorCentrality.c", "v8", 38, 1, FAN_OUT, "EV-OUT (classical)"},
             {"EigenVectorCentrality.c", "v9", 43, 1, FAN_OUT, "EV-OUT (classical)"},
+            {"EigenVectorCentrality.c", "unconnectedFunction", 47, 0, FAN_OUT, "EV-OUT (classical)"},
             
             // Based on Fan-In
             {"EigenVectorCentrality.c", "v1", 3, 8, FAN_IN, "EV-IN (classical)"}, 
@@ -97,7 +98,8 @@ public class EigenVectorCentralityTests extends AbstractParameterizedTests {
             {"EigenVectorCentrality.c", "v6", 30, 0, FAN_IN, "EV-IN (classical)"}, 
             {"EigenVectorCentrality.c", "v7", 34, 1, FAN_IN, "EV-IN (classical)"}, 
             {"EigenVectorCentrality.c", "v8", 38, 3, FAN_IN, "EV-IN (classical)"}, 
-            {"EigenVectorCentrality.c", "v9", 43, 3, FAN_IN, "EV-IN (classical)"}, 
+            {"EigenVectorCentrality.c", "v9", 43, 3, FAN_IN, "EV-IN (classical)"},
+            {"EigenVectorCentrality.c", "unconnectedFunction", 47, 0, FAN_IN, "EV-IN (classical)"},
         });
     }
     

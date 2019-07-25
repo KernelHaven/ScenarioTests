@@ -43,3 +43,5 @@ void v8() {
 void v9() {
     v7();
 }
+
+void unconnectedFunction() {}
