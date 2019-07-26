@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.junit.Assert;
+
 import net.ssehub.kernel_haven.metric_haven.MetricResult;
 
 /**
@@ -85,7 +87,10 @@ public abstract class AbstractParameterizedTests extends AbstractCodeMetricTests
             lastConfig = properties;
         }
         
-        assertMetricResult(result.get(testedFunctionName), expectedLineNo, expectedResultValue);
+        MetricResult mResult = result.get(testedFunctionName);
+        Assert.assertNotNull("No metrics computed for function: " + testedFunctionName + ".\nProbably cause the file "
+            + "doesn't contain that function or it is not parseable.", mResult);
+        assertMetricResult(mResult, expectedLineNo, expectedResultValue);
     }
     
     /**

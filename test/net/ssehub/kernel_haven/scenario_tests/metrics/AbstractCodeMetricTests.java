@@ -289,12 +289,14 @@ public abstract class AbstractCodeMetricTests {
     /**
      * Tests the correct output of a function metric.
      * @param metricResult The result of a metric for one function to test.
-     * @param expectedLine The expected start line of the function.
+     * @param expectedLine The expected start line of the function (0 if this should not be tested).
      * @param expectedResult The expected result of the metric for the specified function.
      */
     protected void assertMetricResult(MetricResult metricResult, int expectedLine, double expectedResult) {
-        Assert.assertEquals("Wrong start line for \"" + metricResult.getContext() + "\"", expectedLine,
-            metricResult.getLine());
+        if (expectedLine > 0) {
+            Assert.assertEquals("Wrong start line for \"" + metricResult.getContext() + "\"", expectedLine,
+                metricResult.getLine());
+        }
         Assert.assertEquals("Wrong metric result for \"" + metricResult.getContext() + "\"",
             expectedResult, metricResult.getValue(), 0);
     }
