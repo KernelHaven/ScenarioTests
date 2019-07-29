@@ -54,22 +54,22 @@ public class UndisciplinedPreprocessorUsageTests extends AbstractParameterizedTe
     @Parameters(name = "UndisciplinedCPP: {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
-//            // No CPP -> All should be 0
-//            {"NoVariabilityFunctions.c", "funcEmpty", 4, 0},
-//            {"NoVariabilityFunctions.c", "funcDecl", 8, 0},
-//            {"NoVariabilityFunctions.c", "funcIfElse", 12, 0},
-//            {"NoVariabilityFunctions.c", "funcGoto", 20, 0},
-//            {"NoVariabilityFunctions.c", "functDoWhile", 35, 0},
-//            {"NoVariabilityFunctions.c", "funcWhile", 72, 0},
-//            {"NoVariabilityFunctions.c", "funcFor", 55, 0},
-//            {"NoVariabilityFunctions.c", "funcSwitch", 90, 0},
-//            
-//            // Disciplined CPP usage -> All should be 0
-//            {"VariabilityFunctions.c", "funcEmpty", 4, 0},
-//            {"VariabilityFunctions.c", "funcDecl", 8, 0},
-//            {"VariabilityFunctions.c", "funcHalfVar", 14, 0},
-//            {"VariabilityFunctions.c", "funcVarNesting", 21, 0},
-//            
+            // No CPP -> All should be 0
+            {"NoVariabilityFunctions.c", "funcEmpty", 4, 0},
+            {"NoVariabilityFunctions.c", "funcDecl", 8, 0},
+            {"NoVariabilityFunctions.c", "funcIfElse", 12, 0},
+            {"NoVariabilityFunctions.c", "funcGoto", 20, 0},
+            {"NoVariabilityFunctions.c", "functDoWhile", 35, 0},
+            {"NoVariabilityFunctions.c", "funcWhile", 72, 0},
+            {"NoVariabilityFunctions.c", "funcFor", 55, 0},
+            {"NoVariabilityFunctions.c", "funcSwitch", 90, 0},
+            
+            // Disciplined CPP usage -> All should be 0
+            {"VariabilityFunctions.c", "funcEmpty", 4, 0},
+            {"VariabilityFunctions.c", "funcDecl", 8, 0},
+            {"VariabilityFunctions.c", "funcHalfVar", 14, 0},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 0},
+            
             // Undisciplined CPP usage
             {"UndisciplinedCPPs.c", "condLoopSplitedInOnePart", 1, 1},
             {"UndisciplinedCPPs.c", "condLoopSplitedInTwoParts", 10, 2},
