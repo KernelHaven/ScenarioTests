@@ -75,15 +75,15 @@ public class UndisciplinedPreprocessorUsageTests extends AbstractParameterizedTe
             {"UndisciplinedCPPs.c", "condLoopSplitedInTwoParts", 10, 2},
             {"UndisciplinedCPPs.c", "condIfSplitedInOnePart", 20, 1},
             {"UndisciplinedCPPs.c", "condIfExpression", 29, 1},
-//            {"UndisciplinedCPPs.c", "condTypeOfDeclaration", 42, 2},      // ErrorElement
-//            {"UndisciplinedCPPs.c", "fig1_bad", 0, 2},                    // Currently not parseable
-//            {"UndisciplinedCPPs.c", "fig1_good", 0, 0},                   // Currently not parseable
+            {"UndisciplinedCPPs.c", "condTypeOfDeclaration", 42, 2},
+            {"UndisciplinedCPPs.c", "fig1_bad", 0, 2},
+            {"UndisciplinedCPPs.c", "fig1_good", 0, 0},
             {"UndisciplinedCPPs.c", "ref1_bad", 0, 2}, 
             {"UndisciplinedCPPs.c", "ref1_good", 0, 0}, 
             {"UndisciplinedCPPs.c", "ref2_bad", 0, 1}, 
             {"UndisciplinedCPPs.c", "ref2_good", 0, 0}, 
-//            {"UndisciplinedCPPs.c", "ref3_bad", 0, 2},           // next function will be nested inside this function
-//            {"UndisciplinedCPPs.c", "ref3_good", 0, 0}, 
+            {"UndisciplinedCPPs.c", "ref3_bad", 0, 2},
+            {"UndisciplinedCPPs.c", "ref3_good", 0, 0}, 
             {"UndisciplinedCPPs.c", "ref4_bad", 0, 1},
             {"UndisciplinedCPPs.c", "ref4_good", 0, 0},
             {"UndisciplinedCPPs.c", "ref5_bad", 0, 1},
