@@ -90,12 +90,12 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             // Code without CPP
             {"NoVariabilityFunctions.c", "funcEmpty", 4, 1, ND_AVG_SETUP, "NDavg"},
             {"NoVariabilityFunctions.c", "funcDecl", 8, 1, ND_AVG_SETUP, "NDavg"},
-            {"NoVariabilityFunctions.c", "funcIfElse", 12, 2, ND_AVG_SETUP, "NDavg"},
-            {"NoVariabilityFunctions.c", "funcGoto", 20, 6.0 / 5, ND_AVG_SETUP, "NDavg"},
-            {"NoVariabilityFunctions.c", "functDoWhile", 35, 2, ND_AVG_SETUP, "NDavg"},
-            {"NoVariabilityFunctions.c", "funcWhile", 72, 2, ND_AVG_SETUP, "NDavg"},
-            {"NoVariabilityFunctions.c", "funcFor", 55, 2, ND_AVG_SETUP, "NDavg"},
-            {"NoVariabilityFunctions.c", "funcSwitch", 90, 12.0 / 7, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "funcIfElse", 12, 5.0 / 3, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "funcGoto", 20, 7.0 / 6, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "functDoWhile", 35, 17.0 / 9, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "funcWhile", 72, 17.0 / 9, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "funcFor", 55, 15.0 / 8, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "funcSwitch", 90, 13.0 / 8, ND_AVG_SETUP, "NDavg"},
             
             // Code with CPP
             {"VariabilityFunctions.c", "funcEmpty", 4, 1, ND_AVG_SETUP, "NDavg"},

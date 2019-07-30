@@ -9,7 +9,7 @@ void funcDecl() {           //          1       1       1
     int declaration;        // 1
 }
 
-void funcIfElse() {         //          1       1       2
+void funcIfElse() {         //          1       1       5/3
     if(true) {              // 1        2
         int declaration;    // 2                2
     } else {                // 3
@@ -17,7 +17,7 @@ void funcIfElse() {         //          1       1       2
     }
 }
 
-void funcGoto(int a) {      //          1       1       6/5
+void funcGoto(int a) {      //          1       1       7/6
 
 	char c = 'a';           // 1
 	int i = 0;              // 2
@@ -32,7 +32,7 @@ loop:
 
 }
 
-void functDoWhile(int a) {  //          1       1       12/6
+void functDoWhile(int a) {  //          1       1       17/9
 
 	char c = 'a';           // 1
 	int i = 0;              // 2
@@ -52,7 +52,7 @@ void functDoWhile(int a) {  //          1       1       12/6
 
 }
 
-void funcFor(int a) {       //          1       1       10/5
+void funcFor(int a) {       //          1       1       15/8
 	char c = 'a';           // 1
 	int i;                  // 2
 	for (i = 0; i < a; i++) {//3        2
@@ -69,7 +69,7 @@ void funcFor(int a) {       //          1       1       10/5
 	}
 }
 
-void funcWhile(int a) {     //          1       1       12/6
+void funcWhile(int a) {     //          1       1       17/9
 	char c = 'a';           // 1
 	int i = 0;              // 2
 	while (!(i < a)) {      // 3        2
@@ -87,7 +87,7 @@ void funcWhile(int a) {     //          1       1       12/6
 	}
 }
 
-char funcSwitch(int a) {    //          1       1       12/7
+char funcSwitch(int a) {    //          1       1       13/8
 	char result = '\0';     // 1
 
 	switch (a) {            // 2
