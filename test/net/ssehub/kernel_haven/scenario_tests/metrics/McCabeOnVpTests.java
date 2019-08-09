@@ -37,11 +37,16 @@ import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSetti
 public class McCabeOnVpTests extends AbstractParameterizedTests {
 
     private static final Properties CC_VP = new Properties();
+    private static final Properties COMBINED = new Properties();
     
     static {
         CC_VP.setProperty(MetricSettings.CC_VARIABLE_TYPE_SETTING.getKey(),
             CCType.VARIATION_POINTS.name());
+        COMBINED.setProperty(MetricSettings.CC_VARIABLE_TYPE_SETTING.getKey(),
+            CCType.ALL.name());
     }
+    
+    private Properties config;
     
     /**
      * Retrieves values from {@link #getParameters()}, creates, and executes the test.
@@ -49,11 +54,13 @@ public class McCabeOnVpTests extends AbstractParameterizedTests {
      * @param testedFunctionName The function to test
      * @param expectedLineNo The expected starting line number of the function
      * @param expectedResultValue The expected value of the metric to compute.
+     * @param config The setting to use for the test.
      */
     public McCabeOnVpTests(String fileName, String testedFunctionName, int expectedLineNo,
-        double expectedResultValue) {
+        double expectedResultValue, Properties config) {
         
         super(fileName, testedFunctionName, expectedLineNo, expectedResultValue);
+        this.config = config;
     }
     
     @Override
@@ -71,20 +78,36 @@ public class McCabeOnVpTests extends AbstractParameterizedTests {
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             // Code without CPP
-            {"NoVariabilityFunctions.c", "funcEmpty", 4, 1},
-            {"NoVariabilityFunctions.c", "funcDecl", 8, 1},
-            {"NoVariabilityFunctions.c", "funcIfElse", 12, 1},
-            {"NoVariabilityFunctions.c", "funcGoto", 20, 1},
-            {"NoVariabilityFunctions.c", "functDoWhile", 35, 1},
-            {"NoVariabilityFunctions.c", "funcWhile", 72, 1},
-            {"NoVariabilityFunctions.c", "funcFor", 55, 1},
-            {"NoVariabilityFunctions.c", "funcSwitch", 90, 1},
+            {"NoVariabilityFunctions.c", "funcEmpty", 4, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "funcDecl", 8, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "funcIfElse", 12, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "funcGoto", 20, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "functDoWhile", 35, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "funcWhile", 72, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "funcFor", 55, 1, CC_VP},
+            {"NoVariabilityFunctions.c", "funcSwitch", 90, 1, CC_VP},
             
             // Code with CPP
-            {"VariabilityFunctions.c", "funcEmpty", 4, 1},
-            {"VariabilityFunctions.c", "funcDecl", 8, 2},
-            {"VariabilityFunctions.c", "funcHalfVar", 14, 2},
-            {"VariabilityFunctions.c", "funcVarNesting", 21, 3}
+            {"VariabilityFunctions.c", "funcEmpty", 4, 1, CC_VP},
+            {"VariabilityFunctions.c", "funcDecl", 8, 2, CC_VP},
+            {"VariabilityFunctions.c", "funcHalfVar", 14, 2, CC_VP},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 3, CC_VP},
+            
+            // Code without CPP
+            {"NoVariabilityFunctions.c", "funcEmpty", 4, 1, COMBINED},
+            {"NoVariabilityFunctions.c", "funcDecl", 8, 1, COMBINED},
+            {"NoVariabilityFunctions.c", "funcIfElse", 12, 2, COMBINED},
+            {"NoVariabilityFunctions.c", "funcGoto", 20, 2, COMBINED},
+            {"NoVariabilityFunctions.c", "functDoWhile", 35, 4, COMBINED},
+            {"NoVariabilityFunctions.c", "funcWhile", 72, 4, COMBINED},
+            {"NoVariabilityFunctions.c", "funcFor", 55, 4, COMBINED},
+            {"NoVariabilityFunctions.c", "funcSwitch", 90, 3, COMBINED},
+            
+            // Code with CPP
+            {"VariabilityFunctions.c", "funcEmpty", 4, 1, COMBINED},
+            {"VariabilityFunctions.c", "funcDecl", 8, 2, COMBINED},
+            {"VariabilityFunctions.c", "funcHalfVar", 14, 2, COMBINED},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 3, COMBINED}
             
         });
     }
@@ -94,6 +117,6 @@ public class McCabeOnVpTests extends AbstractParameterizedTests {
      */
     @Test
     public void test() {
-        super.test(CC_VP);
+        super.test(config);
     }
 }
