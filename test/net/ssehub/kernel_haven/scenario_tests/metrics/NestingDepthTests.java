@@ -96,6 +96,7 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             {"NoVariabilityFunctions.c", "funcWhile", 72, 17.0 / 9, ND_AVG_SETUP, "NDavg"},
             {"NoVariabilityFunctions.c", "funcFor", 55, 15.0 / 8, ND_AVG_SETUP, "NDavg"},
             {"NoVariabilityFunctions.c", "funcSwitch", 90, 13.0 / 8, ND_AVG_SETUP, "NDavg"},
+            {"NoVariabilityFunctions.c", "funcStub", 110, 1, ND_AVG_SETUP, "NDavg"},
             
             // Code with CPP
             {"VariabilityFunctions.c", "funcEmpty", 4, 1, ND_AVG_SETUP, "NDavg"},
@@ -116,6 +117,7 @@ public class NestingDepthTests extends AbstractParameterizedTests {
             {"NoVariabilityFunctions.c", "funcWhile", 72, 3, ND_MAX_SETUP, "NDmax"},
             {"NoVariabilityFunctions.c", "funcFor", 55, 3, ND_MAX_SETUP, "NDmax"},
             {"NoVariabilityFunctions.c", "funcSwitch", 90, 2, ND_MAX_SETUP, "NDmax"},
+            {"NoVariabilityFunctions.c", "funcStub", 110, 1, ND_MAX_SETUP, "NDmax"},
             
             // Code with CPP
             {"VariabilityFunctions.c", "funcEmpty", 4, 1, ND_MAX_SETUP, "NDmax"},

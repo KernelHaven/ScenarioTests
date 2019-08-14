@@ -106,3 +106,6 @@ char funcSwitch(int a) {    //          1       1       13/8
 
 	return result;          //12
 }
+
+void funcStub() {           // 0         1       1       1
+}
