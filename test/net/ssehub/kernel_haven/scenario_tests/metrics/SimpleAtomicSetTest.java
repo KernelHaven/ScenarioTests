@@ -15,7 +15,12 @@
  */
 package net.ssehub.kernel_haven.scenario_tests.metrics;
 
-import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.*;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.BLOCK_TYPE_SETTING;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.CC_VARIABLE_TYPE_SETTING;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.LOC_TYPE_SETTING;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.ND_TYPE_SETTING;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.TD_TYPE_SETTING;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.VARIABLE_TYPE_SETTING;
 
 import java.io.File;
 import java.util.Arrays;
@@ -34,13 +39,14 @@ import net.ssehub.kernel_haven.metric_haven.MetricResult;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.AbstractFunctionMetric;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.BlocksPerFunctionMetric;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.BlocksPerFunctionMetric.BlockMeasureType;
-import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity.CCType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity.CCType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC.LoFType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth.NDType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.TanglingDegree;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.TanglingDegree.TDType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.HierarchyType;
@@ -48,7 +54,6 @@ import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSetti
 import net.ssehub.kernel_haven.metric_haven.metric_components.visitors.UsedVariabilityVarsVisitor;
 import net.ssehub.kernel_haven.metric_haven.metric_components.weights.IVariableWeight;
 import net.ssehub.kernel_haven.test_utils.PseudoVariabilityExtractor;
-import net.ssehub.kernel_haven.util.null_checks.NonNull;
 import net.ssehub.kernel_haven.variability_model.HierarchicalVariable;
 import net.ssehub.kernel_haven.variability_model.VariabilityModelDescriptor.Attribute;
 
@@ -116,8 +121,10 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
             {BlocksPerFunctionMetric.class, BLOCK_TYPE_SETTING, BlockMeasureType.SEPARATE_PARTIAL_BLOCKS, false, 2},
             
             // Tangling Degree
-            {TanglingDegree.class, null, null, false, 2},
-            {TanglingDegree.class, null, null, true, 42},
+            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_ALL, false, 2},
+            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_ALL, true, 42},
+            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_NO_ELSE, false, 1},
+            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_NO_ELSE, true, 21},
             
             // Cyclomatic Complexity
             {CyclomaticComplexity.class, CC_VARIABLE_TYPE_SETTING, CCType.MCCABE, false, 3},
