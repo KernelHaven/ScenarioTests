@@ -30,8 +30,6 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
 @SuiteClasses({
     // Lines of Code variations
     LoCTests.class,
-    LoFTests.class,
-    PLoFTests.class,
     
     // Nesting depth tests
     NestingDepthTests.class,
