@@ -19,7 +19,7 @@ import java.io.File;
 
 import org.junit.Test;
 
-import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric;
 
 /**
  * Tests only that Extractor and analysis won't crash in certain situations.
@@ -40,6 +40,6 @@ public class RobostnessTest extends AbstractCodeMetricTests {
     @Override
     protected String getMetric() {
         // Metric is irrelevant as we do not verify the (uncounted) number of results.
-        return DLoC.class.getName();
+        return LoCMetric.class.getName();
     }
 }

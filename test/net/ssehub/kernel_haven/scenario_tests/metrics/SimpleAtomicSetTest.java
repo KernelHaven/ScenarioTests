@@ -41,8 +41,8 @@ import net.ssehub.kernel_haven.metric_haven.code_metrics.BlocksPerFunctionMetric
 import net.ssehub.kernel_haven.metric_haven.code_metrics.BlocksPerFunctionMetric.BlockMeasureType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity.CCType;
-import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
-import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC.LoFType;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric.LoCType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth.NDType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.TanglingDegree;
@@ -106,9 +106,9 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             // LoC variations
-            {DLoC.class, LOC_TYPE_SETTING, LoFType.DLOC, false, 6},
-            {DLoC.class, LOC_TYPE_SETTING, LoFType.LOF, false, 4},
-            {DLoC.class, LOC_TYPE_SETTING, LoFType.PLOF, false, 4d / 6},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.SCOC, false, 6},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.SCOF, false, 4},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.PSCOF, false, 4d / 6},
             
             // Vars per Function
             {VariablesPerFunction.class, VARIABLE_TYPE_SETTING, VarType.INTERNAL, false, 1},

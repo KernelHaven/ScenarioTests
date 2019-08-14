@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings;
 
 /**
@@ -39,7 +39,7 @@ public class PLoFTests extends AbstractParameterizedTests {
     
     static {
         PLOF_SETUP.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(),
-            net.ssehub.kernel_haven.metric_haven.code_metrics.DLoC.LoFType.PLOF.name());
+            net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric.LoCType.PSCOF.name());
     }
 
     /**
@@ -71,7 +71,7 @@ public class PLoFTests extends AbstractParameterizedTests {
     
     @Override
     protected String getMetric() {
-        return DLoC.class.getName();
+        return LoCMetric.class.getName();
     }
     
     /**
