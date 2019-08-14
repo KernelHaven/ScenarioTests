@@ -56,6 +56,9 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
     // UndisciplinedCPP
     UndisciplinedPreprocessorUsageTests.class,
     
+    // Testing all metric variations on factorial use case
+    SimpleAtomicSetTest.class,
+    
     RobostnessTest.class,
     
     AllWeightsTests.class,
