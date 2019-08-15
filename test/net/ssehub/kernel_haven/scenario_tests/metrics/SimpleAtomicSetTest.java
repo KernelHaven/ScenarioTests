@@ -123,8 +123,8 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
             // Tangling Degree
             {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_ALL, false, 2},
             {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_ALL, true, 42},
-            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_NO_ELSE, false, 1},
-            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_NO_ELSE, true, 21},
+            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_VISIBLE, false, 1},
+            {TanglingDegree.class, TD_TYPE_SETTING, TDType.TD_VISIBLE, true, 21},
             
             // Cyclomatic Complexity
             {CyclomaticComplexity.class, CC_VARIABLE_TYPE_SETTING, CCType.MCCABE, false, 3},
@@ -167,6 +167,7 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
     protected String getMetric() {
         return metric.getName();
     }
+    
     @Override
     protected Map<String, MetricResult> runMetricAsMap(File file, Properties properties) {
         return super.runMetricAsMap(file, properties, false, true, true);

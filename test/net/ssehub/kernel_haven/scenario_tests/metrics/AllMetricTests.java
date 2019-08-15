@@ -31,6 +31,8 @@ import net.ssehub.kernel_haven.scenario_tests.metrics.weights.AllWeightsTests;
     // Lines of Code variations
     LoCTests.class,
     
+    // Tangling Degree variations (including weight usage)
+    
     // Nesting depth tests
     NestingDepthTests.class,
     
