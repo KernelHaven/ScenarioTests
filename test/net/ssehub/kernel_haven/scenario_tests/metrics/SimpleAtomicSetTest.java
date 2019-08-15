@@ -17,6 +17,7 @@ package net.ssehub.kernel_haven.scenario_tests.metrics;
 
 import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.BLOCK_TYPE_SETTING;
 import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.CC_VARIABLE_TYPE_SETTING;
+import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.FAN_TYPE_SETTING;
 import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.LOC_TYPE_SETTING;
 import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.ND_TYPE_SETTING;
 import static net.ssehub.kernel_haven.metric_haven.metric_components.config.MetricSettings.TD_TYPE_SETTING;
@@ -41,12 +42,16 @@ import net.ssehub.kernel_haven.metric_haven.code_metrics.BlocksPerFunctionMetric
 import net.ssehub.kernel_haven.metric_haven.code_metrics.BlocksPerFunctionMetric.BlockMeasureType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.CyclomaticComplexity.CCType;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.EigenVectorCentrality;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.FanInOut.FanType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.LoCMetric.LoCType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.NestingDepth.NDType;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.TanglingDegree;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.TanglingDegree.TDType;
+import net.ssehub.kernel_haven.metric_haven.code_metrics.UndisciplinedPreprocessorUsage;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction;
 import net.ssehub.kernel_haven.metric_haven.code_metrics.VariablesPerFunction.VarType;
 import net.ssehub.kernel_haven.metric_haven.metric_components.config.HierarchyType;
@@ -102,7 +107,9 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
      * 
      * @return The parameters of this test.
      */
+    // CHECKSTYLE:OFF
     @Parameters(name = "Factorial: {2} with weight = {3}")
+    // CHECKSTYLE:ON
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
             // LoC variations
@@ -147,6 +154,81 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
             {NestingDepth.class, ND_TYPE_SETTING, NDType.COMBINED_ND_MAX, true, 23},
             {NestingDepth.class, ND_TYPE_SETTING, NDType.COMBINED_ND_AVG, false, 12d / 6},
             {NestingDepth.class, ND_TYPE_SETTING, NDType.COMBINED_ND_AVG, true, 92d / 6},
+            
+            // Fan in/Out
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_IN_GLOBALLY,              false, 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_OUT_GLOBALLY,             false, 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_IN_LOCALLY,               false, 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_OUT_LOCALLY,              false, 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.VP_FAN_IN_GLOBALLY,                     false, 0},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.VP_FAN_OUT_GLOBALLY,                    false, 0},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.VP_FAN_IN_LOCALLY,                      false, 0},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.VP_FAN_OUT_LOCALLY,                     false, 0},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_GLOBALLY,          false, 3},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_GLOBALLY,          true,  42 + 21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_LOCALLY,           false, 3},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_LOCALLY,           true,  42 + 21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_GLOBALLY,         false, 3},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_GLOBALLY,         true,  42 + 21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_LOCALLY,          false, 3},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_LOCALLY,          true,  42 + 21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_GLOBALLY, false, 3},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_GLOBALLY, true,  42 + 21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_LOCALLY,  false, 3},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_LOCALLY,  true,  42 + 21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_GLOBALLY, false, 2},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_GLOBALLY, true,  21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_LOCALLY,  false, 2},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_LOCALLY,  true,  21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_GLOBALLY,
+                false, 2},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_GLOBALLY,
+                true,  21 + 1},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_LOCALLY,
+                false, 2},
+            {FanInOut.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_LOCALLY,
+                true,  21 + 1},
+            
+            // Eigenvector
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_IN_GLOBALLY,              false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_OUT_GLOBALLY,             false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_IN_LOCALLY,               false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.CLASSICAL_FAN_OUT_LOCALLY,              false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.VP_FAN_IN_GLOBALLY,                     false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.VP_FAN_OUT_GLOBALLY,                    false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.VP_FAN_IN_LOCALLY,                      false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.VP_FAN_OUT_LOCALLY,                     false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_GLOBALLY,          false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_GLOBALLY,          true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_LOCALLY,           false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_IN_LOCALLY,           true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_GLOBALLY,         false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_GLOBALLY,         true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_LOCALLY,          false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_LOCALLY,          true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_GLOBALLY, false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_GLOBALLY, true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_LOCALLY,  false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, FanType.DEGREE_CENTRALITY_OUT_NO_STUB_LOCALLY,  true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, 
+                FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_GLOBALLY, false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING, 
+                FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_GLOBALLY, true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING,
+                FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_LOCALLY, false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING,
+                FanType.DEGREE_CENTRALITY_OUT_NO_EXTERNAL_VPS_LOCALLY, true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING,
+                FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_GLOBALLY, false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING,
+                FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_GLOBALLY, true,  0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING,
+                FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_LOCALLY, false, 0},
+            {EigenVectorCentrality.class, FAN_TYPE_SETTING,
+                FanType.DEGREE_CENTRALITY_OUT_NO_STUB_NO_EXTERNAL_VPS_LOCALLY, true,  0},
+            
+            // Undisciplined CPP
+            {UndisciplinedPreprocessorUsage.class, null, null, false, 0},
         });
     }
     
