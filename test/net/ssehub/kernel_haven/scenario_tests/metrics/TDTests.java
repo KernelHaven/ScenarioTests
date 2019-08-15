@@ -158,6 +158,32 @@ public class TDTests extends AbstractParameterizedTests {
             {"funcElif2"      , 68, 237, TDType.TD_ALL, true},
             {"funcElifNested1", 80,  87, TDType.TD_ALL, true},
             {"funcElifNested2", 92, 177, TDType.TD_ALL, true},
+            
+            // Visible TD (no weights)
+            {"funcStub"       ,  1, 0, TDType.TD_VISIBLE, false},
+            {"funcEmpty"      ,  3, 0, TDType.TD_VISIBLE, false},
+            {"funcOneIfDef"   ,  7, 1, TDType.TD_VISIBLE, false},
+            {"funcNested1"    , 13, 2, TDType.TD_VISIBLE, false},
+            {"funcNested2"    , 22, 2, TDType.TD_VISIBLE, false},
+            {"funcNested3"    , 34, 2, TDType.TD_VISIBLE, false},
+            {"funcNested4"    , 45, 2, TDType.TD_VISIBLE, false},
+            {"funcElif"       , 58, 2, TDType.TD_VISIBLE, false},
+            {"funcElif2"      , 68, 3, TDType.TD_VISIBLE, false},
+            {"funcElifNested1", 80, 3, TDType.TD_VISIBLE, false},
+            {"funcElifNested2", 92, 4, TDType.TD_VISIBLE, false},
+            
+            // Visible TD (with weights)
+            {"funcStub"       ,  1,   0, TDType.TD_VISIBLE, true},
+            {"funcEmpty"      ,  3,   0, TDType.TD_VISIBLE, true},
+            {"funcOneIfDef"   ,  7,  42, TDType.TD_VISIBLE, true},
+            {"funcNested1"    , 13,  63, TDType.TD_VISIBLE, true},
+            {"funcNested2"    , 22,  63, TDType.TD_VISIBLE, true},
+            {"funcNested3"    , 34,  63, TDType.TD_VISIBLE, true},
+            {"funcNested4"    , 45,  63, TDType.TD_VISIBLE, true},
+            {"funcElif"       , 58,  63, TDType.TD_VISIBLE, true},
+            {"funcElif2"      , 68,  66, TDType.TD_VISIBLE, true},
+            {"funcElifNested1", 80,  66, TDType.TD_VISIBLE, true},
+            {"funcElifNested2", 92,  69, TDType.TD_VISIBLE, true},
         });
     }
     
