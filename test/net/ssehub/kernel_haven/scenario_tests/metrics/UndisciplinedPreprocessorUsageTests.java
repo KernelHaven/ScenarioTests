@@ -76,6 +76,7 @@ public class UndisciplinedPreprocessorUsageTests extends AbstractParameterizedTe
             {"UndisciplinedCPPs.c", "condIfSplitedInOnePart", 20, 1},
             {"UndisciplinedCPPs.c", "condIfExpression", 29, 1},
             {"UndisciplinedCPPs.c", "condTypeOfDeclaration", 42, 2},
+            {"UndisciplinedCPPs.c", "condElseSplitedInOnePart", 51, 1},
             {"UndisciplinedCPPs.c", "fig1_bad", 0, 2},
             {"UndisciplinedCPPs.c", "fig1_good", 0, 0},
             {"UndisciplinedCPPs.c", "ref1_bad", 0, 2}, 

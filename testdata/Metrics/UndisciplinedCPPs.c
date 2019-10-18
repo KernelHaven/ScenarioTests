@@ -48,6 +48,18 @@ void condTypeOfDeclaration() {
         variable;
 }
 
+void condElseSplitedInOnePart() {
+    if (true) {
+        ;
+    }
+    #ifdef A
+        else 
+    #endif
+    {
+        ;
+    }
+}
+
 
 // Examples from Discipline Matters: Refactoring of Preprocessor Directives in the #ifdef Hell
 void fig1_bad() {
