@@ -79,7 +79,7 @@ public class CTCRTests extends AbstractParameterizedTests {
         VariabilityVariable varB = new VariabilityVariable("B", "bool");
         VariabilityVariable varC = new VariabilityVariable("C", "bool");
         VariabilityVariable varD = new VariabilityVariable("D", "bool");
-        // Outgoing: A = 4, B = 2 -> 6
+        // Outgoing: A = 3, B = 1 -> 4
         Set<VariabilityVariable> varAUses = new HashSet<>();
         varAUses.add(varB);
         varAUses.add(varC);
@@ -89,13 +89,13 @@ public class CTCRTests extends AbstractParameterizedTests {
         varBUses.add(varC);
         varB.setVariablesUsedInConstraints(varBUses);
         
-        // Incoming: A = 1, B = 3 -> 4
+        // Incoming: A = 0, B = 2 -> 2
         Set<VariabilityVariable> varBUsed = new HashSet<>();
         varBUsed.add(varA);
         varBUsed.add(varC);
         varB.setUsedInConstraintsOfOtherVariables(varBUsed);
         
-        // ALL_CTCR: A = 4, B = 3 -> 7 (C is used twice for B)
+        // ALL_CTCR: A = 3, B = 2 -> 5 (C is used twice for B)
         
         PseudoVariabilityExtractor.configure(new File("mocked_varModel.dimacs"), varA, varB, varC, varD);
         PseudoVariabilityExtractor.setAttributes(Attribute.CONSTRAINT_USAGE);
@@ -115,9 +115,9 @@ public class CTCRTests extends AbstractParameterizedTests {
     @Parameters(name = "CTCR-Weight: {4} on {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
-            {"VariabilityFunctions.c", "funcVarNesting", 21, 6, CTCRType.OUTGOING_CONNECTIONS},
-            {"VariabilityFunctions.c", "funcVarNesting", 21, 4, CTCRType.INCOMIG_CONNECTIONS},
-            {"VariabilityFunctions.c", "funcVarNesting", 21, 7, CTCRType.ALL_CTCR},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 4, CTCRType.OUTGOING_CONNECTIONS},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 2, CTCRType.INCOMIG_CONNECTIONS},
+            {"VariabilityFunctions.c", "funcVarNesting", 21, 5, CTCRType.ALL_CTCR},
             {"VariabilityFunctions.c", "funcVarNesting", 21, 2, CTCRType.NO_CTCR}
         });
     }
