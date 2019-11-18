@@ -104,21 +104,27 @@ public class FeatureSizeTest extends AbstractParameterizedTests {
     @Parameters(name = "FeatureSize-Weight: Positives {4} on {1}")
     public static Collection<Object[]> getParameters() {
         return Arrays.asList(new Object[][] {
+            // Atomic tests
+            {"VariabilityFunctions4FeatureSize.c", "funcA", 0, 8, true},
+            {"VariabilityFunctions4FeatureSize.c", "funcA", 0, 10, false},
+
+            // Complex tests (sorted by true/false to allow caching of parsing results)
             {"FeatureSizes.c", "funcNoVariability", 2, 0, true},
-            {"FeatureSizes.c", "funcNoVariability", 2, 0, false},
             {"FeatureSizes.c", "aPositiveVariable", 7, 1, true},
-            {"FeatureSizes.c", "aPositiveVariable", 7, 1, false},
             {"FeatureSizes.c", "positiveAndNegativeVariable", 13, 1, true},
-            {"FeatureSizes.c", "positiveAndNegativeVariable", 13, 3, false},
             {"FeatureSizes.c", "twoVariables", 22, 4, true},
-            {"FeatureSizes.c", "twoVariables", 22, 4, false},
             {"FeatureSizes.c", "complex", 29, 3, true},
-            {"FeatureSizes.c", "complex", 29, 4, false},
             {"FeatureSizes.c", "variableInTwoFunctions1", 38, 7, true},
-            {"FeatureSizes.c", "variableInTwoFunctions1", 38, 18, false},
             {"FeatureSizes.c", "variableInTwoFunctions2", 50, 10, true},
-            {"FeatureSizes.c", "variableInTwoFunctions2", 50, 21, false},
             {"FeatureSizes.c", "nestedFunction", 65, 12, true},
+            
+            {"FeatureSizes.c", "positiveAndNegativeVariable", 13, 3, false},
+            {"FeatureSizes.c", "funcNoVariability", 2, 0, false},
+            {"FeatureSizes.c", "aPositiveVariable", 7, 1, false},
+            {"FeatureSizes.c", "twoVariables", 22, 4, false},
+            {"FeatureSizes.c", "complex", 29, 4, false},
+            {"FeatureSizes.c", "variableInTwoFunctions1", 38, 18, false},
+            {"FeatureSizes.c", "variableInTwoFunctions2", 50, 21, false},
             {"FeatureSizes.c", "nestedFunction", 65, 16, false},
         });
     }
