@@ -49,8 +49,16 @@ public class LoCTests extends AbstractParameterizedTests {
         settings.put(LoCType.SCOC, prop);
         
         prop = new Properties();
+        prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.SCOC_COMMENT_RATIO.name());
+        settings.put(LoCType.SCOC_COMMENT_RATIO, prop);
+        
+        prop = new Properties();
         prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.SCOF.name());
         settings.put(LoCType.SCOF, prop);
+        
+        prop = new Properties();
+        prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.SCOF_COMMENT_RATIO.name());
+        settings.put(LoCType.SCOF_COMMENT_RATIO, prop);
         
         prop = new Properties();
         prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.PSCOF.name());
@@ -59,10 +67,18 @@ public class LoCTests extends AbstractParameterizedTests {
         prop = new Properties();
         prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.LOC.name());
         settings.put(LoCType.LOC, prop);
+        
+        prop = new Properties();
+        prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.LOC_COMMENT_RATIO.name());
+        settings.put(LoCType.LOC_COMMENT_RATIO, prop);
 
         prop = new Properties();
         prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.LOF.name());
         settings.put(LoCType.LOF, prop);
+        
+        prop = new Properties();
+        prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.LOF_COMMENT_RATIO.name());
+        settings.put(LoCType.LOF_COMMENT_RATIO, prop);
         
         prop = new Properties();
         prop.setProperty(MetricSettings.LOC_TYPE_SETTING.getKey(), LoCType.PLOF.name());
@@ -220,6 +236,54 @@ public class LoCTests extends AbstractParameterizedTests {
             {"VariabilityFunctions.c", "conditionalFunction2", 39, 5d / 7, LoCType.PLOF},
             {"VariabilityFunctions.c", "funcCppElse", 48, 6d / 9, LoCType.PLOF},
             
+            // Comment ratios
+            // Ignore variability / statements
+            {"CommentLoC.c", "func_NoVariability", 1, 0d, LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_NoVariability", 5, 0.5d, LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Variability", 10, 0.5d, LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_outside_Variability", 17, 0.5d, LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_SameLine", 24, 0.5d, LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_Variability", 27, (1 / 3d), LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiline_NoVariability", 39, 0.5d, LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiple_NoVariability", 49, (2 / 3d), LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_NoVariability", 55, (1 / 3d), LoCType.SCOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Mixed_Variability", 62, (1 / 3d), LoCType.SCOC_COMMENT_RATIO},
+            
+            // Only variability / statements
+            {"CommentLoC.c", "func_NoVariability", 1, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_NoVariability", 5, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Variability", 10, 0.5d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_outside_Variability", 17, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_SameLine", 24, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_Variability", 27, (1 / 3d), LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiline_NoVariability", 39, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiple_NoVariability", 49, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_NoVariability", 55, 0d, LoCType.SCOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Mixed_Variability", 62, 0.5d, LoCType.SCOF_COMMENT_RATIO},
+            
+            // Ignore variability / Lines
+            {"CommentLoC.c", "func_NoVariability", 1, 0d, LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_NoVariability", 5, 0.25d, LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Variability", 10, (1 / 6d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_outside_Variability", 17, (1 / 6d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_SameLine", 24, (1 / 3d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_Variability", 27, (1 / 11d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiline_NoVariability", 39, (6 / 9d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiple_NoVariability", 49, (2 / 5d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_NoVariability", 55, (1 / 6d), LoCType.LOC_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Mixed_Variability", 62, (1 / 8d), LoCType.LOC_COMMENT_RATIO},
+            
+            // Only variability / Lines
+            {"CommentLoC.c", "func_NoVariability", 1, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_NoVariability", 5, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Variability", 10, 0.25d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_outside_Variability", 17, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_SameLine", 24, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_Variability", 27, (1 / 9d), LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiline_NoVariability", 39, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_multiple_NoVariability", 49, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_nested_NoVariability", 55, 0d, LoCType.LOF_COMMENT_RATIO},
+            {"CommentLoC.c", "func_Comment_Mixed_Variability", 62, 0.25d, LoCType.LOF_COMMENT_RATIO},
         });
     }
     
