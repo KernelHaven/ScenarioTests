@@ -115,9 +115,13 @@ public class SimpleAtomicSetTest extends AbstractParameterizedTests {
             // LoC variations
             {LoCMetric.class, LOC_TYPE_SETTING, LoCType.SCOC,  false, 6},
             {LoCMetric.class, LOC_TYPE_SETTING, LoCType.SCOF,  false, 4},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.SCOC_COMMENT_RATIO,  false, 2d / (6 + 2)},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.SCOF_COMMENT_RATIO,  false, 2d / (4 + 2)},
             {LoCMetric.class, LOC_TYPE_SETTING, LoCType.PSCOF, false, 4d / 6},
             {LoCMetric.class, LOC_TYPE_SETTING, LoCType.LOC,   false, 18},
             {LoCMetric.class, LOC_TYPE_SETTING, LoCType.LOF,   false, 12},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.LOC_COMMENT_RATIO,  false, 2d / 18},
+            {LoCMetric.class, LOC_TYPE_SETTING, LoCType.LOF_COMMENT_RATIO,  false, 2d / 12},
             {LoCMetric.class, LOC_TYPE_SETTING, LoCType.PLOF,  false, 12d / 18},
             
             // Vars per Function
